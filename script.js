@@ -1,97 +1,173 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger-menu');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    const form = document.getElementById('contact-form');
-    const formFeedback = document.getElementById('form-feedback');
+document.addEventListener("DOMContentLoaded", () => {
+  // Seletores de Elementos
+  const hamburger = document.querySelector(".hamburger-menu");
+  const navMenu = document.querySelector(".nav-menu");
+  const navLinks = document.querySelectorAll(".nav-menu a");
+  const form = document.getElementById("contact-form");
+  const formFeedback = document.getElementById("form-feedback");
+  const submitBtn = form.querySelector(".btn-submit");
+  const header = document.querySelector("header");
 
-    // 1. Navegação do Menu Hambúrguer (UX)
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+  /* ==========================================================================
+       1. CONTROLE DO MENU (MOBILE & ACESSIBILIDADE)
+       ========================================================================== */
+  const toggleMenu = () => {
+    const isOpen = navMenu.classList.toggle("active");
+    hamburger.setAttribute("aria-expanded", isOpen);
+    // Previne scroll no body quando menu está aberto em telas pequenas
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+  };
+
+  hamburger.addEventListener("click", toggleMenu);
+
+  // Fecha o menu ao clicar em links ou fora dele
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (navMenu.classList.contains("active")) {
+        toggleMenu();
+      }
     });
+  });
 
-    // Fecha o menu ao clicar em um link (para mobile)
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-            }
+  /* ==========================================================================
+       2. ROLAGEM SUAVE COM OFFSET DINÂMICO
+       ========================================================================== */
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+
+      // Se for apenas "#", não faz nada
+      if (targetId === "#") return;
+
+      const targetElement = document.querySelector(targetId);
+
+      if (targetElement) {
+        e.preventDefault();
+        const headerOffset = header.offsetHeight;
+        const elementPosition = targetElement.offsetTop;
+        const offsetPosition = elementPosition - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
         });
+      }
     });
+  });
 
-    // 2. Rolagem Suave (UX)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+  /* ==========================================================================
+       6. HERO CAROUSEL (ESTILO DASHBOARD) - AUTO-PLAY COM LABEL DINÂMICO
+       ========================================================================== */
 
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            const headerOffset = document.querySelector('header').offsetHeight;
-            const elementPosition = targetElement.offsetTop;
-            const offsetPosition = elementPosition - headerOffset;
+  let currentIdx = 0;
+  const carousel = document.getElementById("heroCarousel");
+  const cards = document.querySelectorAll(".carousel-card");
+  const label = document.getElementById("cardLabel");
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        });
+  function updateCarousel() {
+    const offset = currentIdx * -100;
+    cards.forEach((card) => {
+      card.style.transform = `translateX(${offset}%)`;
     });
+    // Atualiza o texto baseado no atributo data-label
+    label.innerText = cards[currentIdx].getAttribute("data-label");
+  }
 
-    // Função de validação do e-mail
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
+  function moveCarousel(direction) {
+    currentIdx += direction;
+    if (currentIdx >= cards.length) currentIdx = 0;
+    if (currentIdx < 0) currentIdx = cards.length - 1;
+    updateCarousel();
+  }
+
+  // Auto-play estilo dashboard (troca a cada 4 segundos)
+  setInterval(() => moveCarousel(1), 4000);
+  /* ==========================================================================
+       3. VALIDAÇÕES E UTILITÁRIOS
+       ========================================================================== */
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).toLowerCase());
+  };
+
+  // Função global para o botão de "Ok" no feedback (exposta para o HTML onclick)
+  window.hideFeedback = function (e) {
+    if (e) e.preventDefault();
+    formFeedback.style.display = "none";
+    form.style.display = "grid"; // Voltando para o display grid definido no CSS
+    window.scrollTo({ top: form.offsetTop - 100, behavior: "smooth" });
+  };
+
+  /* ==========================================================================
+       4. ENVIO ASSÍNCRONO (FORMSPREE) COM ESTADO DE LOADING
+       ========================================================================== */
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    // Coleta de valores
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    // Validação Básica
+    if (!name || !email || !phone || !message) {
+      alert("Por favor, preencha todos os campos para continuarmos.");
+      return;
     }
 
-    // Função para esconder a mensagem de feedback
-    window.hideFeedback = function() {
-        formFeedback.style.display = 'none';
-        form.style.display = 'block'; // Mostra o formulário novamente
-    };
+    if (!validateEmail(email)) {
+      alert("O formato do e-mail parece incorreto. Poderia revisar?");
+      return;
+    }
 
-    // 4. Envio Assíncrono do Formulário e Feedback
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Impede o envio padrão do formulário
+    // --- ESTADO DE CARREGAMENTO (UX SISTEMA) ---
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    submitBtn.style.opacity = "0.7";
 
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const message = document.getElementById('message').value.trim();
+    const formData = new FormData(form);
 
-        if (name === '' || email === '' || phone === '' || message === '') {
-            alert('Por favor, preencha todos os campos obrigatórios.');
-            return;
-        }
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
 
-        if (!validateEmail(email)) {
-            alert('Por favor, insira um e-mail válido.');
-            return;
-        }
+      if (response.ok) {
+        // Sucesso
+        form.style.display = "none";
+        formFeedback.style.display = "block";
+        form.reset();
+      } else {
+        // Erro de Resposta do Servidor
+        const data = await response.json();
+        throw new Error(data.error || "Erro ao processar envio.");
+      }
+    } catch (error) {
+      console.error("Erro na submissão:", error);
+      alert(
+        "Infelizmente houve um erro técnico. Tente novamente em instantes.",
+      );
+    } finally {
+      // Restaura o botão independente do resultado
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.style.opacity = "1";
+    }
+  });
 
-        const formData = new FormData(form);
-
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                // Sucesso: Esconde o formulário e exibe a mensagem de feedback
-                form.style.display = 'none';
-                formFeedback.style.display = 'block';
-                form.reset();
-            } else {
-                // Erro: Exibe uma mensagem de erro
-                const data = await response.json();
-                alert(data.error);
-            }
-        } catch (error) {
-            console.error('Erro no envio do formulário:', error);
-            alert('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.');
-        }
-    });
+  /* ==========================================================================
+       5. EFEITO DE HEADER NO SCROLL (UX EXTRA)
+       ========================================================================== */
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.style.boxShadow = "var(--shadow-md)";
+      header.style.padding = "0.8rem 0";
+    } else {
+      header.style.boxShadow = "none";
+      header.style.padding = "1rem 0";
+    }
+  });
 });

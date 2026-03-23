@@ -1,6 +1,6 @@
 {
-  "name": "Sindico TechFacil",
-  "short_name": "TechFacil",
+  "name": "FacilAdmin",
+  "short_name": "FacilAdmin",
   "icons": [
     {
       "src": "./public/android-chrome-192x192.png",
