@@ -1,173 +1,167 @@
+/*
+ * script.js · FacilAdmin: menu móvel, rolagem com compensação do cabeçalho, carrossel acessível
+ * (pausa, teclado, movimento reduzido) e envio do formulário ao Formspree com validação por campo.
+ */
 document.addEventListener("DOMContentLoaded", () => {
-  // Seletores de Elementos
+  const header = document.querySelector("header");
   const hamburger = document.querySelector(".hamburger-menu");
   const navMenu = document.querySelector(".nav-menu");
-  const navLinks = document.querySelectorAll(".nav-menu a");
-  const form = document.getElementById("contact-form");
-  const formFeedback = document.getElementById("form-feedback");
-  const submitBtn = form.querySelector(".btn-submit");
-  const header = document.querySelector("header");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ==========================================================================
-       1. CONTROLE DO MENU (MOBILE & ACESSIBILIDADE)
-       ========================================================================== */
-  const toggleMenu = () => {
-    const isOpen = navMenu.classList.toggle("active");
-    hamburger.setAttribute("aria-expanded", isOpen);
-    // Previne scroll no body quando menu está aberto em telas pequenas
-    document.body.style.overflow = isOpen ? "hidden" : "auto";
+  /* Abre ou fecha o menu móvel e sincroniza aria-expanded. */
+  const setMenu = (open) => {
+    navMenu.classList.toggle("active", open);
+    hamburger.setAttribute("aria-expanded", String(open));
+    hamburger.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    document.body.style.overflow = open ? "hidden" : "";
   };
 
-  hamburger.addEventListener("click", toggleMenu);
-
-  // Fecha o menu ao clicar em links ou fora dele
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      if (navMenu.classList.contains("active")) {
-        toggleMenu();
-      }
-    });
+  hamburger.addEventListener("click", () => setMenu(!navMenu.classList.contains("active")));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navMenu.classList.contains("active")) {
+      setMenu(false);
+      hamburger.focus();
+    }
   });
 
-  /* ==========================================================================
-       2. ROLAGEM SUAVE COM OFFSET DINÂMICO
-       ========================================================================== */
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const targetId = this.getAttribute("href");
-
-      // Se for apenas "#", não faz nada
+    anchor.addEventListener("click", (event) => {
+      const targetId = anchor.getAttribute("href");
       if (targetId === "#") return;
-
-      const targetElement = document.querySelector(targetId);
-
-      if (targetElement) {
-        e.preventDefault();
-        const headerOffset = header.offsetHeight;
-        const elementPosition = targetElement.offsetTop;
-        const offsetPosition = elementPosition - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
+      const target = document.querySelector(targetId);
+      if (!target) return;
+      event.preventDefault();
+      setMenu(false);
+      window.scrollTo({ top: target.offsetTop - header.offsetHeight, behavior: reduceMotion ? "auto" : "smooth" });
+      target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
     });
   });
 
-  /* ==========================================================================
-       6. HERO CAROUSEL (ESTILO DASHBOARD) - AUTO-PLAY COM LABEL DINÂMICO
-       ========================================================================== */
-
-  let currentIdx = 0;
-  const carousel = document.getElementById("heroCarousel");
-  const cards = document.querySelectorAll(".carousel-card");
+  const cards = Array.from(document.querySelectorAll(".carousel-card"));
   const label = document.getElementById("cardLabel");
+  const pauseButton = document.getElementById("carouselPause");
+  const carousel = document.getElementById("heroCarousel");
+  let current = 0;
+  let timer = null;
+  let pausedByUser = reduceMotion;
 
-  function updateCarousel() {
-    const offset = currentIdx * -100;
-    cards.forEach((card) => {
-      card.style.transform = `translateX(${offset}%)`;
+  /* Mostra o slide atual e esconde os demais de leitores de tela. */
+  const render = () => {
+    cards.forEach((card, index) => {
+      card.style.transform = `translateX(${current * -100}%)`;
+      card.setAttribute("aria-hidden", String(index !== current));
     });
-    // Atualiza o texto baseado no atributo data-label
-    label.innerText = cards[currentIdx].getAttribute("data-label");
-  }
-
-  function moveCarousel(direction) {
-    currentIdx += direction;
-    if (currentIdx >= cards.length) currentIdx = 0;
-    if (currentIdx < 0) currentIdx = cards.length - 1;
-    updateCarousel();
-  }
-
-  // Auto-play estilo dashboard (troca a cada 4 segundos)
-  setInterval(() => moveCarousel(1), 4000);
-  /* ==========================================================================
-       3. VALIDAÇÕES E UTILITÁRIOS
-       ========================================================================== */
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).toLowerCase());
+    label.textContent = cards[current].dataset.label;
   };
 
-  // Função global para o botão de "Ok" no feedback (exposta para o HTML onclick)
-  window.hideFeedback = function (e) {
-    if (e) e.preventDefault();
-    formFeedback.style.display = "none";
-    form.style.display = "grid"; // Voltando para o display grid definido no CSS
-    window.scrollTo({ top: form.offsetTop - 100, behavior: "smooth" });
+  /* Avança ou volta, de forma circular. */
+  const move = (direction) => {
+    current = (current + direction + cards.length) % cards.length;
+    render();
   };
 
-  /* ==========================================================================
-       4. ENVIO ASSÍNCRONO (FORMSPREE) COM ESTADO DE LOADING
-       ========================================================================== */
+  /* Liga a troca automática a cada 5 s, se permitido. */
+  const start = () => {
+    if (pausedByUser || timer) return;
+    timer = setInterval(() => move(1), 5000);
+  };
+
+  /* Para a troca automática. */
+  const stop = () => {
+    clearInterval(timer);
+    timer = null;
+  };
+
+  /* Atualiza o botão de pausa (WCAG 2.2.2). */
+  const syncPauseButton = () => {
+    pauseButton.textContent = pausedByUser ? "Retomar" : "Pausar";
+    pauseButton.setAttribute("aria-pressed", String(pausedByUser));
+  };
+
+  document.querySelectorAll(".carousel-nav [data-direction]").forEach((button) => {
+    button.addEventListener("click", () => move(Number(button.dataset.direction)));
+  });
+  pauseButton.addEventListener("click", () => {
+    pausedByUser = !pausedByUser;
+    syncPauseButton();
+    if (pausedByUser) stop();
+    else start();
+  });
+  const widget = carousel.closest(".dashboard-widget");
+  widget.addEventListener("mouseenter", stop);
+  widget.addEventListener("mouseleave", start);
+  widget.addEventListener("focusin", stop);
+  widget.addEventListener("focusout", start);
+  document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+  syncPauseButton();
+  render();
+  start();
+
+  const form = document.getElementById("contact-form");
+  const feedback = document.getElementById("form-feedback");
+  const status = document.getElementById("form-status");
+  const submitButton = form.querySelector(".btn-submit");
+  const rules = {
+    name: (value) => (value.length >= 3 ? "" : "Informe seu nome completo."),
+    email: (value) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "" : "Informe um e-mail válido, como nome@exemplo.com."),
+    phone: (value) => (value.replace(/\D/g, "").length >= 10 ? "" : "Informe o telefone com DDD."),
+    message: (value) => (value.length >= 10 ? "" : "Conte em poucas palavras o número de unidades e o principal desafio."),
+  };
+
+  /* Valida um campo, mostra a mensagem ao lado e devolve se está ok. */
+  const validateField = (name) => {
+    const field = form.elements[name];
+    const message = rules[name](field.value.trim());
+    document.getElementById(`${name}-error`).textContent = message;
+    field.setAttribute("aria-invalid", String(Boolean(message)));
+    return !message;
+  };
+
+  Object.keys(rules).forEach((name) => {
+    form.elements[name].addEventListener("blur", () => validateField(name));
+  });
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-
-    // Coleta de valores
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const message = document.getElementById("message").value.trim();
-
-    // Validação Básica
-    if (!name || !email || !phone || !message) {
-      alert("Por favor, preencha todos os campos para continuarmos.");
+    status.textContent = "";
+    const invalid = Object.keys(rules).filter((name) => !validateField(name));
+    if (invalid.length > 0) {
+      form.elements[invalid[0]].focus();
       return;
     }
 
-    if (!validateEmail(email)) {
-      alert("O formato do e-mail parece incorreto. Poderia revisar?");
-      return;
-    }
-
-    // --- ESTADO DE CARREGAMENTO (UX SISTEMA) ---
-    const originalBtnText = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-    submitBtn.style.opacity = "0.7";
-
-    const formData = new FormData(form);
+    const originalText = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Enviando...';
 
     try {
       const response = await fetch(form.action, {
         method: "POST",
-        body: formData,
+        body: new FormData(form),
         headers: { Accept: "application/json" },
       });
-
-      if (response.ok) {
-        // Sucesso
-        form.style.display = "none";
-        formFeedback.style.display = "block";
-        form.reset();
-      } else {
-        // Erro de Resposta do Servidor
-        const data = await response.json();
-        throw new Error(data.error || "Erro ao processar envio.");
-      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      form.reset();
+      form.hidden = true;
+      feedback.hidden = false;
+      feedback.focus();
     } catch (error) {
-      console.error("Erro na submissão:", error);
-      alert(
-        "Infelizmente houve um erro técnico. Tente novamente em instantes.",
-      );
+      status.textContent = "Não foi possível enviar agora. Verifique sua conexão e tente de novo, ou fale conosco pelo WhatsApp.";
     } finally {
-      // Restaura o botão independente do resultado
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalBtnText;
-      submitBtn.style.opacity = "1";
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalText;
     }
   });
 
-  /* ==========================================================================
-       5. EFEITO DE HEADER NO SCROLL (UX EXTRA)
-       ========================================================================== */
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      header.style.boxShadow = "var(--shadow-md)";
-      header.style.padding = "0.8rem 0";
-    } else {
-      header.style.boxShadow = "none";
-      header.style.padding = "1rem 0";
-    }
+  document.getElementById("feedback-ok").addEventListener("click", () => {
+    feedback.hidden = true;
+    form.hidden = false;
+    form.elements.name.focus();
   });
+
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 50);
+  }, { passive: true });
 });
+/* fim de script.js */

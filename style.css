@@ -411,12 +411,12 @@ section:nth-of-type(even) {
 
 .tag-red {
   background: #fee2e2;
-  color: #dc2626;
+  color: #b91c1c;
 }
 
 .tag-green {
   background: #dcfce7;
-  color: #16a34a;
+  color: #166534;
 }
 
 .card-problema ul,
@@ -765,3 +765,109 @@ footer {
     text-align: center;
   }
 }
+/* ==========================================================================
+   ACESSIBILIDADE, FORMULÁRIO E ESTADOS (ciclo MVP 27/09/2026)
+   ========================================================================== */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 1000;
+  background: var(--bg-dark);
+  color: var(--white);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+header.scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+.visual-item {
+  margin: 0;
+}
+
+.carousel-nav {
+  display: flex;
+  gap: 6px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  color: var(--text-main);
+}
+
+.field-error,
+.form-status {
+  color: #b91c1c;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  min-height: 0;
+}
+
+.field-error:empty,
+.form-status:empty {
+  display: none;
+}
+
+[aria-invalid="true"] {
+  border-color: #b91c1c !important;
+}
+
+.form-privacy {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.form-feedback[hidden],
+form[hidden] {
+  display: none !important;
+}
+
+.social-pending {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+.btn-cta,
+.btn-submit {
+  background-color: #047857;
+}
+
+.diferencial-cto .badge {
+  color: #bfdbfe;
+  background: rgba(191, 219, 254, 0.12);
+}
+/* fim de style.css */

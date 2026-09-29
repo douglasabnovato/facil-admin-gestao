@@ -1,8 +1,8 @@
-# Síndico TechFacil
+# FacilAdmin — Síndico Profissional e Ecossistema de Facilities
 
 ## Descrição e Objetivo do Projeto
 
-O **Síndico TechFacil** é uma landing page institucional criada para um síndico profissional, focada em estabelecer uma forte presença online, construir credibilidade e converter visitantes em leads qualificados. O objetivo principal do projeto é apresentar os serviços de administração de condomínios de forma clara e profissional, utilizando um design moderno e estratégico para atrair e engajar potenciais clientes.
+O **FacilAdmin** (antes chamado Síndico TechFacil) é uma landing page institucional criada para um síndico profissional, focada em estabelecer uma forte presença online, construir credibilidade e converter visitantes em leads qualificados. O objetivo principal do projeto é apresentar os serviços de administração de condomínios de forma clara e profissional, utilizando um design moderno e estratégico para atrair e engajar potenciais clientes.
 
 A landing page foi desenvolvida como o primeiro passo de um projeto maior que visa a criação de um **Sistema Inteligente de Gestão de Condomínios**.
 
@@ -118,3 +118,32 @@ O **FacilAdmin** é um ecossistema de gestão inteligente de condomínios que un
 * **Imparcialidade Absoluta:** Atuação profissional sem vínculos emocionais ou políticos com os residentes do condomínio.
 * **Visão de Ecossistema Integrado:** Conexão direta entre serviços de facilities, controle de dados e transparência digital.
 * **Segurança Jurídica e Financeira:** Mitigação ativa de riscos legais aliada a uma forte redução de custos operacionais por meio de eficiência preventiva.
+
+---
+
+## ▶️ Como executar e publicar
+
+Site estático, sem build. Abra o `index.html` com uma extensão como Live Server. Em produção fica no **GitHub Pages** (*Settings → Pages → branch main, pasta raiz*); passo a passo em [docs/DEPLOY.md](docs/DEPLOY.md). O formulário usa o Formspree; troque o endereço em `action` do `<form>` se mudar a conta.
+
+## 🌐 Em produção
+
+**Demonstração:** https://douglasabnovato.github.io/facil-admin-gestao/
+
+- GitHub Pages publicando a branch `main` (pasta raiz), sem build e sem workflow; `.nojekyll` desliga o Jekyll.
+- O formulário envia pelo Formspree.
+- Passo a passo completo: [docs/DEPLOY.md](docs/DEPLOY.md).
+
+## 📊 Estado do MVP & Documentação
+
+| Documento | Conteúdo |
+|---|---|
+| [docs/ANALISE.md](./docs/ANALISE.md) | Requisitos, diagnóstico, rubrica e notas |
+| [docs/ARQUITETURA.md](./docs/ARQUITETURA.md) | C4, funil da página e ADRs |
+| [docs/PLANO-DE-ACAO.md](./docs/PLANO-DE-ACAO.md) | Tarefas priorizadas por MoSCoW |
+
+| Momento | Nota MVP | Situação |
+|---|---|---|
+| Antes (27/09/2026) | 3,94 | Reprovado — ~19 MB de imagens, carrossel quebrado e formulário sem rótulos |
+| Depois (27/09/2026) | 7,98 | Aprovado — faltam confirmar depoimentos e informar as redes sociais |
+
+Principais mudanças: imagens em WebP (−97% de peso), carrossel acessível com pausa, formulário com erro por campo e anti-spam, contraste AA e metadados de SEO.

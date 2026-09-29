@@ -1,12 +1,22 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FacilAdmin | Gestão Inteligente de Condomínios e Ecossistema de Facilities</title>
+  <meta name="description" content="Síndico profissional independente com gestão financeira preditiva, engenharia preventiva e compliance para condomínios. Solicite um diagnóstico gratuito." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FacilAdmin | Gestão Inteligente de Condomínios" />
+  <meta property="og:description" content="Síndico profissional independente, engenharia preventiva e prestação de contas transparente." />
+  <meta property="og:image" content="https://douglasabnovato.github.io/facil-admin-gestao/profile/eduardo-ciscoto-1.webp" />
+  <meta property="og:url" content="https://douglasabnovato.github.io/facil-admin-gestao/" />
+  <meta property="og:locale" content="pt_BR" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="./style.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="./public/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="./public/favicon-32x32.png" />
@@ -15,22 +25,23 @@
 </head>
 
 <body>
+  <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
   <header>
     <div class="container">
-      <a href="#" class="logo">Facil<span>Admin</span></a>
-      <nav class="nav-menu">
+      <a href="#topo" class="logo" aria-label="FacilAdmin, início">Facil<span>Admin</span></a>
+      <nav class="nav-menu" id="menu-principal" aria-label="Menu principal">
         <a href="#servicos">Ecossistema & Soluções</a>
         <a href="#sobre">Síndico Profissional</a>
         <a href="#depoimentos">Resultados Comprovados</a>
         <a href="#contato" class="btn btn-primary">Contratar Gestão</a>
       </nav>
-      <button class="hamburger-menu" aria-label="Abrir Menu">
-        <i class="fas fa-bars"></i>
+      <button type="button" class="hamburger-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+        <i class="fas fa-bars" aria-hidden="true"></i>
       </button>
     </div>
   </header>
-  <main>
-    <section class="hero-dashboard">
+  <main id="conteudo">
+    <section class="hero-dashboard" id="topo">
       <div class="container hero-grid">
         <div class="hero-content">
           <span class="badge-tech">Powered by LearnTECH Ecosystem</span>
@@ -63,38 +74,39 @@
               <span class="status-live">LIVE: Monitoramento Ativo de Facilities</span>
             </div>
 
-            <div class="carousel-container" id="heroCarousel">
-              <div class="carousel-card" data-label="Logística Inteligente de Encomendas">
-                <img src="./profile/eduardo-ciscoto-3.png" alt="Rastreamento FacilAdmin" />
+            <div class="carousel-container" id="heroCarousel" role="region" aria-roledescription="carrossel" aria-label="Serviços do ecossistema FacilAdmin">
+              <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="1 de 8: Logística Inteligente de Encomendas" data-label="Logística Inteligente de Encomendas">
+                <img src="./profile/eduardo-ciscoto-7.webp" alt="Eduardo confere uma encomenda com o entregador usando um tablet na sala de encomendas" width="900" height="900" fetchpriority="high" decoding="async" />
               </div>
-              <div class="carousel-card" data-label="Segurança Digital e Compliance">
-                <img src="./profile/eduardo-ciscoto-1.png" alt="Monitoramento IA" />
+              <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="2 de 8: Segurança Digital e Compliance" data-label="Segurança Digital e Compliance" aria-hidden="true">
+                <img src="./profile/eduardo-ciscoto-1.webp" alt="Eduardo acompanha as câmeras do condomínio numa central de monitoramento" width="900" height="900" loading="lazy" decoding="async" />
               </div>
-              <div class="carousel-card" data-label="Termografia e Engenharia Elétrica">
-                <img src="./profile/eduardo-ciscoto-2.png" alt="Auditoria Elétrica" />
+              <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="3 de 8: Termografia e Engenharia Elétrica" data-label="Termografia e Engenharia Elétrica" aria-hidden="true">
+                <img src="./profile/eduardo-ciscoto-4.webp" alt="Eduardo usa uma câmera térmica no quadro elétrico ao lado de um técnico" width="900" height="900" loading="lazy" decoding="async" />
               </div>
-              <div class="carousel-card" data-label="Automação de Sistemas Hidráulicos">
-                <img src="./profile/eduardo-ciscoto-3.png" alt="Controle de Recalque" />
+              <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="4 de 8: Automação de Sistemas Hidráulicos" data-label="Automação de Sistemas Hidráulicos" aria-hidden="true">
+                <img src="./profile/eduardo-ciscoto-3.webp" alt="Eduardo inspeciona uma bomba de recalque com um técnico" width="900" height="900" loading="lazy" decoding="async" />
               </div>
-              <div class="carousel-card" data-label="Qualidade e Tratamento de Água">
-                <img src="./profile/eduardo-ciscoto-4.png" alt="Tratamento Técnico" />
+              <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="5 de 8: Qualidade e Tratamento de Água" data-label="Qualidade e Tratamento de Água" aria-hidden="true">
+                <img src="./profile/eduardo-ciscoto-6.webp" alt="Eduardo verifica o painel do sistema de tratamento de água com o zelador" width="900" height="900" loading="lazy" decoding="async" />
               </div>
-              <div class="carousel-card" data-label="Gestão Financeira em Tempo Real">
-                <img src="./profile/eduardo-ciscoto-5.png" alt="Finanças FacilAdmin" />
+              <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="6 de 8: Gestão Financeira em Tempo Real" data-label="Gestão Financeira em Tempo Real" aria-hidden="true">
+                <img src="./profile/eduardo-ciscoto-2.webp" alt="Eduardo apresenta um painel financeiro no notebook a dois conselheiros" width="900" height="900" loading="lazy" decoding="async" />
               </div>
-              <div class="carousel-card" data-label="Comunicação Transparente com Moradores">
-                <img src="./profile/eduardo-ciscoto-6.png" alt="App do Morador" />
+              <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="7 de 8: Comunicação Transparente com Moradores" data-label="Comunicação Transparente com Moradores" aria-hidden="true">
+                <img src="./profile/eduardo-ciscoto-10.webp" alt="Eduardo grava um vídeo de comunicado para os moradores" width="900" height="900" loading="lazy" decoding="async" />
               </div>
-              <div class="carousel-card" data-label="Vistorias Técnicas Preventivas">
-                <img src="./profile/eduardo-ciscoto-7.png" alt="Vistoria Técnica" />
+              <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="8 de 8: Vistorias Técnicas Preventivas" data-label="Vistorias Técnicas Preventivas" aria-hidden="true">
+                <img src="./profile/eduardo-ciscoto-5.webp" alt="Eduardo registra no tablet a vistoria de um equipamento na parede" width="900" height="900" loading="lazy" decoding="async" />
               </div>
             </div>
 
             <div class="widget-footer">
-              <p id="cardLabel">Logística Inteligente de Encomendas</p>
+              <p id="cardLabel" aria-live="polite">Logística Inteligente de Encomendas</p>
               <div class="carousel-nav">
-                <button onclick="moveCarousel(-1)">←</button>
-                <button onclick="moveCarousel(1)">→</button>
+                <button type="button" id="carouselPause" aria-pressed="false">Pausar</button>
+                <button type="button" data-direction="-1" aria-label="Slide anterior">←</button>
+                <button type="button" data-direction="1" aria-label="Próximo slide">→</button>
               </div>
             </div>
           </div>
@@ -116,15 +128,15 @@
             <div class="card-tag tag-red">Gestão Comum (Amadora)</div>
             <ul>
               <li>
-                <i class="fas fa-times-circle"></i> Síndico morador sobrecarregado, sujeito a animosidades e sem
+                <i class="fas fa-times-circle" aria-hidden="true"></i> Síndico morador sobrecarregado, sujeito a animosidades e sem
                 imparcialidade.
               </li>
               <li>
-                <i class="fas fa-times-circle"></i> Inadimplência sem controle rigoroso e balancetes opacos ou difíceis
+                <i class="fas fa-times-circle" aria-hidden="true"></i> Inadimplência sem controle rigoroso e balancetes opacos ou difíceis
                 de auditar.
               </li>
               <li>
-                <i class="fas fa-times-circle"></i> Obras emergenciais caríssimas por total ausência de engenharia
+                <i class="fas fa-times-circle" aria-hidden="true"></i> Obras emergenciais caríssimas por total ausência de engenharia
                 preventiva.
               </li>
             </ul>
@@ -133,15 +145,15 @@
             <div class="card-tag tag-green">Governança Inteligente FacilAdmin</div>
             <ul>
               <li>
-                <i class="fas fa-check-circle"></i> Síndico profissional independente, focado em técnica, leis e
+                <i class="fas fa-check-circle" aria-hidden="true"></i> Síndico profissional independente, focado em técnica, leis e
                 neutralidade absoluta.
               </li>
               <li>
-                <i class="fas fa-check-circle"></i> Cobrança ativa inteligente e prestação de contas transparente em
+                <i class="fas fa-check-circle" aria-hidden="true"></i> Cobrança ativa inteligente e prestação de contas transparente em
                 dashboards dinâmicos.
               </li>
               <li>
-                <i class="fas fa-check-circle"></i> Cronograma rigoroso de manutenção preventiva que reduz custos
+                <i class="fas fa-check-circle" aria-hidden="true"></i> Cronograma rigoroso de manutenção preventiva que reduz custos
                 drásticos em longo prazo.
               </li>
             </ul>
@@ -159,7 +171,7 @@
         </div>
         <div class="grid-3-cols">
           <article class="card card-smart">
-            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="card-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
             <h3>Gestão Financeira Preditiva</h3>
             <p>
               Previsões orçamentárias assertivas, auditoria contínua de entradas e saídas e estratégias inteligentes
@@ -168,7 +180,7 @@
           </article>
 
           <article class="card card-smart">
-            <div class="card-icon"><i class="fas fa-tools"></i></div>
+            <div class="card-icon"><i class="fas fa-tools" aria-hidden="true"></i></div>
             <h3>Engenharia e Facilities</h3>
             <p>
               Vistorias técnicas periódicas, planos de manutenção rigorosos e acesso à nossa rede inteligente de
@@ -177,7 +189,7 @@
           </article>
 
           <article class="card card-smart">
-            <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="card-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
             <h3>Compliance & Jurídico</h3>
             <p>
               Segurança jurídica integral na condução de assembleias, elaboração de atas, contratos e adequação total ao
@@ -195,8 +207,8 @@
             <span class="badge">Inovação Tecnológica</span>
             <h2>A Primeira Gestão Condominial com Mentalidade de Ecossistema</h2>
             <p>
-              Nossa operação é liderada por um especialista que cruza a **administração predial especializada** com
-              **arquitetura de software e processos logísticos**.
+              Nossa operação é liderada por um especialista que cruza a <strong>administração predial especializada</strong> com
+              <strong>arquitetura de software e processos logísticos</strong>.
             </p>
             <p>
               Enquanto o mercado atua de forma reativa e baseada em planilhas antigas, o ecossistema FacilAdmin conecta
@@ -211,30 +223,30 @@
 
           <div class="diferencial-visual">
             <div class="visual-grid">
-              <div class="visual-item tooltip-item">
-                <img src="./profile/eduardo-ciscoto-3.png" alt="CTO analisando Dashboard Financeiro" />
-                <span class="tooltip-text">Governança financeira guiada por dados em tempo real</span>
-              </div>
+              <figure class="visual-item tooltip-item">
+                <img src="./profile/eduardo-ciscoto-50.webp" alt="Eduardo apresenta indicadores financeiros no notebook em reunião com o conselho" width="900" height="900" loading="lazy" decoding="async" />
+                <figcaption class="tooltip-text">Governança financeira guiada por dados em tempo real</figcaption>
+              </figure>
 
-              <div class="visual-item tooltip-item">
-                <img src="./profile/eduardo-ciscoto-2.png" alt="Síndico auditando engenharia com tablet" />
-                <span class="tooltip-text">Auditoria de engenharia predial com rigor tecnológico</span>
-              </div>
+              <figure class="visual-item tooltip-item">
+                <img src="./profile/eduardo-ciscoto-4.webp" alt="Eduardo faz termografia no quadro elétrico com um técnico" width="900" height="900" loading="lazy" decoding="async" />
+                <figcaption class="tooltip-text">Auditoria de engenharia predial com rigor tecnológico</figcaption>
+              </figure>
 
-              <div class="visual-item tooltip-item">
-                <img src="./profile/eduardo-ciscoto-10.png" alt="Líder treinando zelador" />
-                <span class="tooltip-text">Capacitação constante e validação da operação em campo</span>
-              </div>
+              <figure class="visual-item tooltip-item">
+                <img src="./profile/eduardo-ciscoto-40.webp" alt="Eduardo orienta um funcionário na casa de bombas usando um tablet" width="900" height="900" loading="lazy" decoding="async" />
+                <figcaption class="tooltip-text">Capacitação constante e validação da operação em campo</figcaption>
+              </figure>
 
-              <div class="visual-item tooltip-item">
-                <img src="./profile/eduardo-ciscoto-50.png" alt="Especialista vistoriando casa de máquinas" />
-                <span class="tooltip-text">Proteção ativa da saúde estrutural do seu patrimônio</span>
-              </div>
+              <figure class="visual-item tooltip-item">
+                <img src="./profile/eduardo-ciscoto-3.webp" alt="Eduardo vistoria uma bomba na casa de máquinas" width="900" height="900" loading="lazy" decoding="async" />
+                <figcaption class="tooltip-text">Proteção ativa da saúde estrutural do seu patrimônio</figcaption>
+              </figure>
 
-              <div class="visual-item tooltip-item">
-                <img src="./profile/eduardo-ciscoto-40.png" alt="Arquiteto desenhando fluxo de trabalho com equipe" />
-                <span class="tooltip-text">Ecossistema integrado de matching de fornecedores</span>
-              </div>
+              <figure class="visual-item tooltip-item">
+                <img src="./profile/eduardo-ciscoto-7.webp" alt="Eduardo recebe um fornecedor e confere a entrega no tablet" width="900" height="900" loading="lazy" decoding="async" />
+                <figcaption class="tooltip-text">Ecossistema integrado de matching de fornecedores</figcaption>
+              </figure>
             </div>
           </div>
         </div>
@@ -245,7 +257,7 @@
       <div class="container">
         <div class="grid-sobre">
           <div class="sobre-img">
-            <img src="./profile/eduardo-ciscoto-70.png" alt="Eduardo Ciscoto - Síndico Profissional" />
+            <img src="./profile/eduardo-ciscoto-70.webp" alt="Colagem com Eduardo Ciscoto, síndico profissional, em vistorias técnicas, na central de monitoramento e com a equipe" width="900" height="900" loading="lazy" decoding="async" />
           </div>
           <div class="sobre-content">
             <h2>Liderança Especializada em Valorização Patrimonial</h2>
@@ -255,9 +267,11 @@
               <strong>Imparcialidade, Competência Técnica e Inovação Digital.</strong>
             </p>
             <div class="stats-row">
+              <!-- Número de condomínios atendidos: preencher com o valor real antes de exibir.
               <div class="stat-item">
                 <strong>[X]+</strong><span>Condomínios Atendidos</span>
               </div>
+              -->
               <div class="stat-item">
                 <strong>98%</strong><span>Índice de Satisfação</span>
               </div>
@@ -273,7 +287,7 @@
 
         <div class="depoimentos-container">
           <div class="card card-depoimento">
-            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+            <div class="quote-icon" aria-hidden="true"><i class="fas fa-quote-left"></i></div>
             <p>
               "A transparência na prestação de contas mudou radicalmente. Hoje o conselho e os moradores sabem
               exatamente o destino de cada centavo."
@@ -285,7 +299,7 @@
           </div>
 
           <div class="card card-depoimento">
-            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+            <div class="quote-icon" aria-hidden="true"><i class="fas fa-quote-left"></i></div>
             <p>
               "A auditoria preventiva na área hidráulica evitou um colapso e reduziu nossos custos de manutenção
               corretiva em mais de 30%."
@@ -297,7 +311,7 @@
           </div>
 
           <div class="card card-depoimento">
-            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+            <div class="quote-icon" aria-hidden="true"><i class="fas fa-quote-left"></i></div>
             <p>
               "A comunicação integrada e o ecossistema de facilidades tornaram a convivência no condomínio muito mais
               leve e organizada."
@@ -309,7 +323,7 @@
           </div>
 
           <div class="card card-depoimento">
-            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+            <div class="quote-icon" aria-hidden="true"><i class="fas fa-quote-left"></i></div>
             <p>
               "O rigor jurídico na condução das assembleias e nos contratos nos deu uma tranquilidade institucional
               inédita."
@@ -321,7 +335,7 @@
           </div>
 
           <div class="card card-depoimento">
-            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+            <div class="quote-icon" aria-hidden="true"><i class="fas fa-quote-left"></i></div>
             <p>
               "Ter um gestor com visão de ecossistema e tecnologia faz toda a diferença. Não troco o padrão FacilAdmin
               por nada."
@@ -342,31 +356,42 @@
           <p>Solicite um diagnóstico gratuito e descubra os benefícios de contar com uma gestão profissional e
             integrada.</p>
 
-          <form id="contact-form" action="https://formspree.io/f/xwpqnzoa" method="POST" target="_self">
+          <form id="contact-form" action="https://formspree.io/f/xwpqnzoa" method="POST" novalidate>
             <div class="input-group">
-              <input type="text" id="name" name="name" placeholder="Nome Completo" required />
+              <label for="name">Nome completo</label>
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="Ex.: Ana Souza" required aria-describedby="name-error" />
+              <p class="field-error" id="name-error"></p>
             </div>
             <div class="input-group">
-              <input type="email" id="email" name="email" placeholder="E-mail Corporativo/Pessoal" required />
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="nome@exemplo.com" required aria-describedby="email-error" />
+              <p class="field-error" id="email-error"></p>
             </div>
             <div class="input-group">
-              <input type="tel" id="phone" name="phone" placeholder="WhatsApp / Telefone" required />
+              <label for="phone">WhatsApp / telefone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="(32) 99999-9999" required aria-describedby="phone-error" />
+              <p class="field-error" id="phone-error"></p>
             </div>
             <div class="input-group">
+              <label for="message">Seu condomínio</label>
               <textarea id="message" name="message" rows="4"
-                placeholder="Informe o número de unidades e o principal desafio do seu condomínio (financeiro, conflitos ou manutenção)"
-                required></textarea>
+                placeholder="Número de unidades e o principal desafio (financeiro, conflitos ou manutenção)"
+                required aria-describedby="message-error"></textarea>
+              <p class="field-error" id="message-error"></p>
             </div>
+            <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <p class="form-privacy">Usamos seus dados só para responder a esta solicitação (LGPD).</p>
+            <p class="form-status" id="form-status" role="alert"></p>
             <button type="submit" class="btn btn-submit">
               Solicitar Diagnóstico e Proposta Gratuita
             </button>
           </form>
 
-          <div id="form-feedback" class="form-feedback" style="display: none">
-            <i class="fas fa-check-circle"></i>
-            <h3>Mensagem Enviada com Sucesso!</h3>
+          <div id="form-feedback" class="form-feedback" role="status" tabindex="-1" hidden>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            <h3>Mensagem enviada com sucesso!</h3>
             <p>Obrigado pelo contato. Nossa equipe técnica analisará sua solicitação e retornará em breve.</p>
-            <a href="#" class="btn btn-primary" onclick="hideFeedback()">Ok, entendi</a>
+            <button type="button" class="btn btn-primary" id="feedback-ok">Enviar outra mensagem</button>
           </div>
         </div>
       </div>
@@ -381,9 +406,9 @@
           <strong>LearnTECH & FacilAdmin</strong>. Todos os direitos reservados.
         </p>
         <div class="social-icons">
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" aria-label="LinkedIn (em breve)" class="social-pending"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Instagram (em breve)" class="social-pending"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" aria-label="WhatsApp (em breve)" class="social-pending"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>
