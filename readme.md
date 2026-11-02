@@ -1,5 +1,7 @@
 # FacilAdmin — Síndico Profissional e Ecossistema de Facilities
 
+> **Estado em 02/11/2026:** Página estática no GitHub Pages. O envio usa o Formspree. Testes: `npm ci`, `npx playwright install chromium` e `npm test`, com o Formspree simulado. O envio real não foi testado. Critérios em [docs/MVP.md](docs/MVP.md).
+
 ## Descrição e Objetivo do Projeto
 
 O **FacilAdmin** (antes chamado Síndico TechFacil) é uma landing page institucional criada para um síndico profissional, focada em estabelecer uma forte presença online, construir credibilidade e converter visitantes em leads qualificados. O objetivo principal do projeto é apresentar os serviços de administração de condomínios de forma clara e profissional, utilizando um design moderno e estratégico para atrair e engajar potenciais clientes.
