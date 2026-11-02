@@ -888,3 +888,10 @@ form[hidden] {
     transform: rotate(360deg);
   }
 }
+
+/* Campos do formulário com foco visível pelo teclado */
+.contato input:focus-visible,
+.contato textarea:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
