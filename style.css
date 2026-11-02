@@ -434,12 +434,12 @@ section:nth-of-type(even) {
   color: var(--text-muted);
 }
 
-.card-problema li i {
+.card-problema li .icone {
   color: #dc2626;
   margin-top: 3px;
 }
 
-.card-solucao li i {
+.card-solucao li .icone {
   color: #16a34a;
   margin-top: 3px;
 }
@@ -871,3 +871,20 @@ form[hidden] {
   background: rgba(191, 219, 254, 0.12);
 }
 /* fim de style.css */
+
+/* Ícones em SVG embutido */
+.icone {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: -0.125em;
+}
+.fa-spin {
+  animation: icone-giro 1s linear infinite;
+}
+@keyframes icone-giro {
+  to {
+    transform: rotate(360deg);
+  }
+}
