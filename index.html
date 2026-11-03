@@ -13,11 +13,8 @@
   <meta property="og:image" content="https://douglasabnovato.github.io/facil-admin-gestao/profile/eduardo-ciscoto-1.webp" />
   <meta property="og:url" content="https://douglasabnovato.github.io/facil-admin-gestao/" />
   <meta property="og:locale" content="pt_BR" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Fontes e ícones não bloqueiam a primeira pintura -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" /></noscript>
+  <!-- Poppins servida pelo próprio site (OFL, fonts/OFL.txt): sem conexão extra antes do título -->
+  <link rel="preload" href="./fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="./style.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="./public/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="./public/favicon-32x32.png" />
@@ -36,6 +33,7 @@
         <a href="#servicos">Ecossistema & Soluções</a>
         <a href="#sobre">Síndico Profissional</a>
         <a href="#depoimentos">Resultados Comprovados</a>
+        <a href="#como-contratar">Como Contratar</a>
         <a href="#contato" class="btn btn-primary">Contratar Gestão</a>
       </nav>
       <button type="button" class="hamburger-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
@@ -79,28 +77,28 @@
 
             <div class="carousel-container" id="heroCarousel" role="region" aria-roledescription="carrossel" aria-label="Serviços do ecossistema FacilAdmin">
               <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="1 de 8: Logística Inteligente de Encomendas" data-label="Logística Inteligente de Encomendas">
-                <img src="./profile/eduardo-ciscoto-7.webp" alt="Eduardo confere uma encomenda com o entregador usando um tablet na sala de encomendas" width="900" height="900" fetchpriority="high" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-7.webp" srcset="./profile/eduardo-ciscoto-7-480.webp 480w, ./profile/eduardo-ciscoto-7.webp 900w" sizes="(max-width: 560px) 86vw, 470px" alt="Eduardo confere uma encomenda com o entregador usando um tablet na sala de encomendas" width="900" height="900" fetchpriority="high" decoding="async" />
               </div>
               <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="2 de 8: Segurança Digital e Compliance" data-label="Segurança Digital e Compliance" aria-hidden="true">
-                <img src="./profile/eduardo-ciscoto-1.webp" alt="Eduardo acompanha as câmeras do condomínio numa central de monitoramento" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-1.webp" srcset="./profile/eduardo-ciscoto-1-480.webp 480w, ./profile/eduardo-ciscoto-1.webp 900w" sizes="(max-width: 560px) 86vw, 470px" alt="Eduardo acompanha as câmeras do condomínio numa central de monitoramento" width="900" height="900" loading="lazy" decoding="async" />
               </div>
               <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="3 de 8: Termografia e Engenharia Elétrica" data-label="Termografia e Engenharia Elétrica" aria-hidden="true">
-                <img src="./profile/eduardo-ciscoto-4.webp" alt="Eduardo usa uma câmera térmica no quadro elétrico ao lado de um técnico" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-4.webp" srcset="./profile/eduardo-ciscoto-4-480.webp 480w, ./profile/eduardo-ciscoto-4.webp 900w" sizes="(max-width: 560px) 86vw, 470px" alt="Eduardo usa uma câmera térmica no quadro elétrico ao lado de um técnico" width="900" height="900" loading="lazy" decoding="async" />
               </div>
               <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="4 de 8: Automação de Sistemas Hidráulicos" data-label="Automação de Sistemas Hidráulicos" aria-hidden="true">
-                <img src="./profile/eduardo-ciscoto-3.webp" alt="Eduardo inspeciona uma bomba de recalque com um técnico" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-3.webp" srcset="./profile/eduardo-ciscoto-3-480.webp 480w, ./profile/eduardo-ciscoto-3.webp 900w" sizes="(max-width: 560px) 86vw, 470px" alt="Eduardo inspeciona uma bomba de recalque com um técnico" width="900" height="900" loading="lazy" decoding="async" />
               </div>
               <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="5 de 8: Qualidade e Tratamento de Água" data-label="Qualidade e Tratamento de Água" aria-hidden="true">
-                <img src="./profile/eduardo-ciscoto-6.webp" alt="Eduardo verifica o painel do sistema de tratamento de água com o zelador" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-6.webp" srcset="./profile/eduardo-ciscoto-6-480.webp 480w, ./profile/eduardo-ciscoto-6.webp 900w" sizes="(max-width: 560px) 86vw, 470px" alt="Eduardo verifica o painel do sistema de tratamento de água com o zelador" width="900" height="900" loading="lazy" decoding="async" />
               </div>
               <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="6 de 8: Gestão Financeira em Tempo Real" data-label="Gestão Financeira em Tempo Real" aria-hidden="true">
-                <img src="./profile/eduardo-ciscoto-2.webp" alt="Eduardo apresenta um painel financeiro no notebook a dois conselheiros" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-2.webp" srcset="./profile/eduardo-ciscoto-2-480.webp 480w, ./profile/eduardo-ciscoto-2.webp 900w" sizes="(max-width: 560px) 86vw, 470px" alt="Eduardo apresenta um painel financeiro no notebook a dois conselheiros" width="900" height="900" loading="lazy" decoding="async" />
               </div>
               <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="7 de 8: Comunicação Transparente com Moradores" data-label="Comunicação Transparente com Moradores" aria-hidden="true">
-                <img src="./profile/eduardo-ciscoto-10.webp" alt="Eduardo grava um vídeo de comunicado para os moradores" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-10.webp" srcset="./profile/eduardo-ciscoto-10-480.webp 480w, ./profile/eduardo-ciscoto-10.webp 900w" sizes="(max-width: 560px) 86vw, 470px" alt="Eduardo grava um vídeo de comunicado para os moradores" width="900" height="900" loading="lazy" decoding="async" />
               </div>
               <div class="carousel-card" role="group" aria-roledescription="slide" aria-label="8 de 8: Vistorias Técnicas Preventivas" data-label="Vistorias Técnicas Preventivas" aria-hidden="true">
-                <img src="./profile/eduardo-ciscoto-5.webp" alt="Eduardo registra no tablet a vistoria de um equipamento na parede" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-5.webp" srcset="./profile/eduardo-ciscoto-5-480.webp 480w, ./profile/eduardo-ciscoto-5.webp 900w" sizes="(max-width: 560px) 86vw, 470px" alt="Eduardo registra no tablet a vistoria de um equipamento na parede" width="900" height="900" loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -227,27 +225,27 @@
           <div class="diferencial-visual">
             <div class="visual-grid">
               <figure class="visual-item tooltip-item">
-                <img src="./profile/eduardo-ciscoto-50.webp" alt="Eduardo apresenta indicadores financeiros no notebook em reunião com o conselho" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-50.webp" srcset="./profile/eduardo-ciscoto-50-480.webp 480w, ./profile/eduardo-ciscoto-50.webp 900w" sizes="(max-width: 1024px) 45vw, 200px" alt="Eduardo apresenta indicadores financeiros no notebook em reunião com o conselho" width="900" height="900" loading="lazy" decoding="async" />
                 <figcaption class="tooltip-text">Governança financeira guiada por dados em tempo real</figcaption>
               </figure>
 
               <figure class="visual-item tooltip-item">
-                <img src="./profile/eduardo-ciscoto-4.webp" alt="Eduardo faz termografia no quadro elétrico com um técnico" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-4.webp" srcset="./profile/eduardo-ciscoto-4-480.webp 480w, ./profile/eduardo-ciscoto-4.webp 900w" sizes="(max-width: 1024px) 45vw, 200px" alt="Eduardo faz termografia no quadro elétrico com um técnico" width="900" height="900" loading="lazy" decoding="async" />
                 <figcaption class="tooltip-text">Auditoria de engenharia predial com rigor tecnológico</figcaption>
               </figure>
 
               <figure class="visual-item tooltip-item">
-                <img src="./profile/eduardo-ciscoto-40.webp" alt="Eduardo orienta um funcionário na casa de bombas usando um tablet" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-40.webp" srcset="./profile/eduardo-ciscoto-40-480.webp 480w, ./profile/eduardo-ciscoto-40.webp 900w" sizes="(max-width: 1024px) 45vw, 200px" alt="Eduardo orienta um funcionário na casa de bombas usando um tablet" width="900" height="900" loading="lazy" decoding="async" />
                 <figcaption class="tooltip-text">Capacitação constante e validação da operação em campo</figcaption>
               </figure>
 
               <figure class="visual-item tooltip-item">
-                <img src="./profile/eduardo-ciscoto-3.webp" alt="Eduardo vistoria uma bomba na casa de máquinas" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-3.webp" srcset="./profile/eduardo-ciscoto-3-480.webp 480w, ./profile/eduardo-ciscoto-3.webp 900w" sizes="(max-width: 1024px) 45vw, 200px" alt="Eduardo vistoria uma bomba na casa de máquinas" width="900" height="900" loading="lazy" decoding="async" />
                 <figcaption class="tooltip-text">Proteção ativa da saúde estrutural do seu patrimônio</figcaption>
               </figure>
 
               <figure class="visual-item tooltip-item">
-                <img src="./profile/eduardo-ciscoto-7.webp" alt="Eduardo recebe um fornecedor e confere a entrega no tablet" width="900" height="900" loading="lazy" decoding="async" />
+                <img src="./profile/eduardo-ciscoto-7.webp" srcset="./profile/eduardo-ciscoto-7-480.webp 480w, ./profile/eduardo-ciscoto-7.webp 900w" sizes="(max-width: 1024px) 45vw, 200px" alt="Eduardo recebe um fornecedor e confere a entrega no tablet" width="900" height="900" loading="lazy" decoding="async" />
                 <figcaption class="tooltip-text">Ecossistema integrado de matching de fornecedores</figcaption>
               </figure>
             </div>
@@ -260,7 +258,7 @@
       <div class="container">
         <div class="grid-sobre">
           <div class="sobre-img">
-            <img src="./profile/eduardo-ciscoto-70.webp" alt="Colagem com Eduardo Ciscoto, síndico profissional, em vistorias técnicas, na central de monitoramento e com a equipe" width="900" height="900" loading="lazy" decoding="async" />
+            <img src="./profile/eduardo-ciscoto-70.webp" srcset="./profile/eduardo-ciscoto-70-480.webp 480w, ./profile/eduardo-ciscoto-70.webp 900w" sizes="350px" alt="Colagem com Eduardo Ciscoto, síndico profissional, em vistorias técnicas, na central de monitoramento e com a equipe" width="900" height="900" loading="lazy" decoding="async" />
           </div>
           <div class="sobre-content">
             <h2>Liderança Especializada em Valorização Patrimonial</h2>
