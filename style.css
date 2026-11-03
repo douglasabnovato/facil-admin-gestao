@@ -906,6 +906,82 @@ form[hidden] {
   color: #bfdbfe;
   background: rgba(191, 219, 254, 0.12);
 }
+/* COMO CONTRATAR (ciclo 03/11/2026) */
+.passos {
+  list-style: none;
+  counter-reset: passo;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.passos li {
+  counter-increment: passo;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.passos li::before {
+  content: counter(passo);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: var(--white);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.passos strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.passos span {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.perguntas-titulo {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.perguntas {
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.perguntas details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.9rem 1.25rem;
+}
+
+.perguntas summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.perguntas details p {
+  margin-top: 0.6rem;
+  color: var(--text-muted);
+}
+
+.contratacao-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
 /* fim de style.css */
 
 /* Ícones em SVG embutido */
