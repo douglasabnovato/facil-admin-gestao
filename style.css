@@ -18,6 +18,7 @@
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08);
   --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --white: #ffffff;
+  --focus-on-dark: #c4b5fd;
 }
 
 * {
@@ -109,7 +110,8 @@ h3 {
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
-  transition: all 0.3s ease;
+  /* Sem "all": o contorno de foco aparece na hora, sem animar a cor */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   cursor: pointer;
   border: 1px solid transparent;
   white-space: nowrap;
@@ -738,9 +740,12 @@ footer {
     overflow: hidden;
     transition: height 0.3s ease;
     padding: 0;
+    /* Fechado, o menu sai da ordem do Tab: o foco não some atrás da altura 0 */
+    visibility: hidden;
   }
 
   .nav-menu.active {
+    visibility: visible;
     height: auto;
     padding: 1.5rem 2rem;
     border-bottom: 1px solid var(--border);
@@ -786,6 +791,12 @@ footer {
 :focus-visible {
   outline: 3px solid var(--accent-color);
   outline-offset: 3px;
+}
+
+/* Fundo escuro: contorno claro para manter contraste de pelo menos 3:1 (WCAG 1.4.11) */
+.hero-dashboard :focus-visible,
+.diferencial-cto :focus-visible {
+  outline-color: var(--focus-on-dark);
 }
 
 header.scrolled {
