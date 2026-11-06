@@ -14,7 +14,7 @@
 | 4 | Escopo enxuto | O que não entra está registrado | Atende | `PLANO-DE-ACAO.md`, "Fora do escopo", 03/11 |
 | 5 | Medição de uso | A métrica principal é coletada | Não atende | Depende da conta de medição (#21) |
 | 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende | Testes de erro por campo, falha de envio e envio com sucesso, 03/11 |
-| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Atende | Lighthouse móvel no site publicado, mediana abaixo de 2,5 s (tabela de 03/11) |
+| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Atende | Lighthouse móvel no site publicado, mediana de 1,72 s depois do PR #30, 06/11 (#28) |
 | 8 | Acessibilidade básica | Lighthouse e teclado | Atende | Lighthouse 100; `tests/foco.spec.mjs` confere contorno e contraste de 3:1 em todo Tab, 03/11 (#27) |
 | 9 | Segurança e conformidade | Riscos decididos; termos cumpridos | Parcial | Depoimentos e "98%" sem confirmação (#19) |
 | 10 | Entrega confiável | Publicação só depois de CI verde | Parcial | CI em PRs para `main` e `developer/**`; `main` sem proteção (#20) |
@@ -23,12 +23,12 @@
 
 ## Medições de 03/11/2026
 
-Lighthouse 12.8.2 local, móvel, 3 execuções no site publicado (https://douglasabnovato.github.io/facil-admin-gestao/). O elemento do LCP é o título `h1`. A máquina tinha outras medições rodando, e o resultado varia muito.
+Lighthouse 12.8.2 local, móvel, 3 execuções no site publicado (https://douglasabnovato.github.io/facil-admin-gestao/). Antes, o elemento do LCP era o título `h1`; depois, é o parágrafo do topo (`.hero-content > p`). A medição de depois é de 06/11/2026. A máquina tinha outras medições rodando, e o resultado varia muito.
 
 | Versão | LCP nas 3 execuções | Mediana | CLS | Acessibilidade |
 |---|---|---|---|---|
 | Antes (`main` de 02/11) | 2,02 / 1,30 / 3,13 s | 2,02 s | 0,023 a 0,025 | 100 |
-| Depois (este ciclo) | a medir depois do merge | | | |
+| Depois (`main` de 06/11, PR #30) | 1,82 / 1,66 / 1,72 s | 1,72 s | 0,001 | 100 |
 
 **Correção da leitura de 01/11:** os "4 elementos sem contorno de foco" eram os links do menu móvel fechado. Com altura 0, eles recebiam foco sem aparecer. Agora saem da ordem do Tab. O critério 8 constava como "Atende" antes da correção; a tabela acima reflete o estado depois dela.
 
