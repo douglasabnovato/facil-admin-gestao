@@ -54,12 +54,32 @@ Este projeto segue uma abordagem de design e usabilidade centrada no usuário, c
 
 ## Próximos Passos do Projeto
 
-Este repositório é a base do nosso projeto. As próximas etapas incluem o desenvolvimento do sistema de gestão, que terá as seguintes funcionalidades:
+Estado em 03/11/2026: veja [docs/MVP.md](docs/MVP.md). O plano do ciclo está em [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md#ciclo-de-03112026).
 
-1.  **Definição da Arquitetura:** Estruturação do banco de dados e da API para o sistema de gestão de condomínios.
-2.  **Desenvolvimento do Backend:** Implementação da lógica de negócio, autenticação e permissões para administradores, condomínios e moradores.
-3.  **Desenvolvimento do Frontend (Dashboard):** Criação da interface de usuário para a gestão de prestadores, finanças, vistorias e comunicação.
-4.  **Integração:** Conexão da landing page (como entrada de novos clientes) com o novo sistema, criando um fluxo completo de atração e gestão de clientes.
+Com o responsável:
+
+- Confirmar depoimentos e o "98%" ([#19](https://github.com/douglasabnovato/facil-admin-gestao/issues/19)).
+- Proteger a `main` com PR e CI ([#20](https://github.com/douglasabnovato/facil-admin-gestao/issues/20)).
+- Medir o uso sem dados pessoais ([#21](https://github.com/douglasabnovato/facil-admin-gestao/issues/21)).
+- Enviar um pedido real e testar com alguém de fora ([#22](https://github.com/douglasabnovato/facil-admin-gestao/issues/22)).
+- Informar os links das redes ([#23](https://github.com/douglasabnovato/facil-admin-gestao/issues/23)).
+
+Com o agente:
+
+- axe-core no CI ([#24](https://github.com/douglasabnovato/facil-admin-gestao/issues/24)).
+- Tirar as imagens não usadas, com aval do responsável ([#25](https://github.com/douglasabnovato/facil-admin-gestao/issues/25)).
+- Página de privacidade ([#26](https://github.com/douglasabnovato/facil-admin-gestao/issues/26)).
+
+O sistema de gestão (dashboard, API) fica na `facil-admin-plataforma`.
+
+### Rodar os testes
+
+```bash
+node scripts/verificar-links.mjs
+npm ci
+npx playwright install chromium
+npm test
+```
 
 ---
 
