@@ -1,6 +1,6 @@
 # FacilAdmin — Síndico Profissional e Ecossistema de Facilities
 
-> **Estado em 02/11/2026:** Página estática no GitHub Pages. O envio usa o Formspree. Testes: `npm ci`, `npx playwright install chromium` e `npm test`, com o Formspree simulado. O envio real não foi testado. Critérios em [docs/MVP.md](docs/MVP.md).
+> **Estado em 06/11/2026:** Página estática no GitHub Pages. O envio usa o Formspree. Testes: `npm ci`, `npx playwright install chromium` e `npm test`, com o Formspree simulado. O envio real não foi testado. Veja [Estado e próximos passos](#estado-e-próximos-passos-ciclo-de-03112026) e [docs/MVP.md](docs/MVP.md).
 
 ## Descrição e Objetivo do Projeto
 
@@ -52,9 +52,19 @@ Este projeto segue uma abordagem de design e usabilidade centrada no usuário, c
 
 ---
 
-## Próximos Passos do Projeto
+## Estado e próximos passos (ciclo de 03/11/2026)
 
-Estado em 03/11/2026: veja [docs/MVP.md](docs/MVP.md). O plano do ciclo está em [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md#ciclo-de-03112026).
+Página publicada (HTTP 200 em 06/11/2026): https://douglasabnovato.github.io/facil-admin-gestao/
+
+### O que foi feito
+
+- CI também nos PRs e pushes da `developer/**` ([#29](https://github.com/douglasabnovato/facil-admin-gestao/pull/29)).
+- Foco visível com contraste de 3:1 e menu fechado fora do Tab, com teste ([#27](https://github.com/douglasabnovato/facil-admin-gestao/issues/27), PR #29).
+- Fonte Poppins no próprio site e fotos com `srcset` para o celular ([#28](https://github.com/douglasabnovato/facil-admin-gestao/issues/28), PR #29).
+- Seção "Como contratar", com 4 passos e perguntas ao candidato, baseada no Código Civil e em guias do setor (PR #29).
+- Critérios do MVP revistos com evidência (PRs [#17](https://github.com/douglasabnovato/facil-admin-gestao/pull/17), [#18](https://github.com/douglasabnovato/facil-admin-gestao/pull/18) e #29).
+
+### O que queremos fazer
 
 Com o responsável:
 
@@ -71,6 +81,11 @@ Com o agente:
 - Página de privacidade ([#26](https://github.com/douglasabnovato/facil-admin-gestao/issues/26)).
 
 O sistema de gestão (dashboard, API) fica na `facil-admin-plataforma`.
+
+### Onde está a documentação
+
+- Estado e critérios: [docs/MVP.md](docs/MVP.md).
+- Plano do ciclo: [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md#ciclo-de-03112026).
 
 ### Rodar os testes
 
