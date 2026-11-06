@@ -60,7 +60,7 @@ Página publicada (HTTP 200 em 06/11/2026): https://douglasabnovato.github.io/fa
 
 - CI também nos PRs e pushes da `developer/**` ([#29](https://github.com/douglasabnovato/facil-admin-gestao/pull/29)).
 - Foco visível com contraste de 3:1 e menu fechado fora do Tab, com teste ([#27](https://github.com/douglasabnovato/facil-admin-gestao/issues/27), PR #29).
-- Fonte Poppins no próprio site e fotos com `srcset` para o celular ([#28](https://github.com/douglasabnovato/facil-admin-gestao/issues/28), PR #29).
+- Fonte Poppins no próprio site e fotos com `srcset` para o celular: LCP móvel com mediana de 1,72 s no site publicado em 06/11 ([#28](https://github.com/douglasabnovato/facil-admin-gestao/issues/28), PR #29).
 - Seção "Como contratar", com 4 passos e perguntas ao candidato, baseada no Código Civil e em guias do setor (PR #29).
 - Critérios do MVP revistos com evidência (PRs [#17](https://github.com/douglasabnovato/facil-admin-gestao/pull/17), [#18](https://github.com/douglasabnovato/facil-admin-gestao/pull/18) e #29).
 
