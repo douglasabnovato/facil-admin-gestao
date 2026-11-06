@@ -63,3 +63,23 @@ test('a falha no envio mostra a mensagem e mantém os dados', async ({ page }) =
   await expect(page.locator('#form-status')).not.toBeEmpty();
   await expect(page.locator('#name')).toHaveValue('Ana Souza');
 });
+
+test('a seção "Como contratar" mostra os 4 passos e abre as perguntas pelo teclado', async ({ page }) => {
+  await page.goto('/');
+  const secao = page.locator('#como-contratar');
+  await expect(secao.getByRole('heading', { level: 2 })).toHaveText('Como contratar um síndico profissional');
+  await expect(secao.locator('.passos > li')).toHaveCount(4);
+
+  // Abre a última pergunta (não a primeira), para o teste não passar por acaso pela ordem
+  const perguntas = secao.locator('details');
+  await expect(perguntas).toHaveCount(4);
+  const ultima = perguntas.last();
+  await expect(ultima).not.toHaveAttribute('open', '');
+  await ultima.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(ultima).toHaveAttribute('open', '');
+  await expect(ultima.locator('p')).toBeVisible();
+
+  await secao.getByRole('link', { name: 'Pedir o diagnóstico gratuito' }).click();
+  await expect(page.locator('#contato')).toBeFocused();
+});
