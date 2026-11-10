@@ -1017,3 +1017,19 @@ form[hidden] {
   outline: 3px solid var(--primary-color);
   outline-offset: 2px;
 }
+
+/* Avisos de conteúdo ilustrativo (decisão D4 de 10/11/2026) */
+.aviso-ilustrativo {
+  display: inline-block;
+  margin: 0 0 1.5rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: #fff7ed;
+  color: #7c2d12;
+  border: 1px solid #fed7aa;
+  font-size: 0.9rem;
+}
+
+.selo-ilustrativo {
+  font-style: normal;
+}
