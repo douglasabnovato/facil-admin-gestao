@@ -56,6 +56,8 @@ Este projeto segue uma abordagem de design e usabilidade centrada no usuário, c
 
 Página publicada (HTTP 200 em 06/11/2026): https://douglasabnovato.github.io/facil-admin-gestao/
 
+**Estado em 10/11/2026:** Vitrine (N2), 9 de 12 critérios atendidos; **Finalizado: sim**. Os 3 que faltam dependem do responsável. A `main` está protegida desde 10/11/2026 (ruleset `principal-protegida`). Detalhes em [docs/MVP.md](docs/MVP.md).
+
 ### O que foi feito
 
 - CI também nos PRs e pushes da `developer/**` ([#29](https://github.com/douglasabnovato/facil-admin-gestao/pull/29)).
@@ -69,7 +71,7 @@ Página publicada (HTTP 200 em 06/11/2026): https://douglasabnovato.github.io/fa
 Com o responsável:
 
 - Confirmar depoimentos e o "98%" ([#19](https://github.com/douglasabnovato/facil-admin-gestao/issues/19)).
-- Proteger a `main` com PR e CI ([#20](https://github.com/douglasabnovato/facil-admin-gestao/issues/20)).
+- Proteger a `main`: feito em 10/11/2026; a [#20](https://github.com/douglasabnovato/facil-admin-gestao/issues/20) fecha no merge da `main`.
 - Medir o uso sem dados pessoais ([#21](https://github.com/douglasabnovato/facil-admin-gestao/issues/21)).
 - Enviar um pedido real e testar com alguém de fora ([#22](https://github.com/douglasabnovato/facil-admin-gestao/issues/22)).
 - Informar os links das redes ([#23](https://github.com/douglasabnovato/facil-admin-gestao/issues/23)).
