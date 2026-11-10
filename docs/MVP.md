@@ -1,25 +1,29 @@
 # MVP — critérios
 
-> Revisão de 03/11/2026 (ciclo `feature/2026-11-03`); critério 10 revisto em 10/11/2026. Mesmos 12 critérios do `movies`. "Não medido" significa que não há evidência, não que falhe.
+> Revisão de 10/11/2026 (ciclo da faixa de 90%, decisões D1 a D7 do repositório `engenharia`). Mesmos 12 critérios do `movies`. "Não medido" significa que não há evidência, não que falhe.
 
 **Nível:** Vitrine (N2), 12 critérios se aplicam.
-**Resumo:** 9 de 12 aplicáveis atendidos; 2 parciais (3, 9) e 1 não atende (5). Os 3 dependem do responsável e têm issue aberta com `depende-do-responsavel`.
-**Finalizado:** sim, pela decisão 4 do processo (o que falta depende do responsável: #19, #21, #22).
+**Resumo:** 11 de 12 aplicáveis atendidos; 1 parcial (5), que depende da conta do responsável.
+**Finalizado:** sim — falta só a conta do GoatCounter, do responsável (#21, com `depende-do-responsavel`).
 
 | # | Critério | Como verificar | Situação | Evidência e data |
 |---|---|---|---|---|
 | 1 | Problema e público claros | Dá para explicar em uma frase | Atende | `PLANO-DE-ACAO.md`, ciclo de 03/11 |
-| 2 | Hipótese a validar | Existe uma aposta escrita, com meta | Atende: proposta | Revisão de 02/11, abaixo |
-| 3 | Fluxo principal completo | Uma pessoa conclui sem ajuda | Parcial | Envio simulado no CI; envio real e pessoa de fora pendentes (#22) |
+| 2 | Hipótese a validar | Existe uma aposta escrita, com meta | Atende | Meta decidida pelo coordenador em 10/11/2026 (decisão D1), revisável pelo responsável. Aposta em "Revisão de 02/11/2026", abaixo |
+| 3 | Fluxo principal completo | Uma pessoa conclui sem ajuda | Atende | Decisão D2. `npx playwright test`, 10/11/2026: 13 testes, 0 falhas; o envio do pedido (sucesso e falha) roda no navegador com o Formspree simulado. No ar, sem enviar dado: a página publicada usa `action="https://formspree.io/f/xwpqnzoa"`; `curl` no endereço dá 405 (o formulário existe; um ID inexistente dá 404 `FORM_NOT_FOUND`) e o preflight responde `Access-Control-Allow-Origin: https://douglasabnovato.github.io`, 10/11/2026. Conferir a chegada no e-mail e o teste com pessoa de fora viraram validação (#22) |
 | 4 | Escopo enxuto | O que não entra está registrado | Atende | `PLANO-DE-ACAO.md`, "Fora do escopo", 03/11 |
-| 5 | Medição de uso | A métrica principal é coletada | Não atende | Depende da conta de medição (#21) |
+| 5 | Medição de uso | A métrica principal é coletada | Parcial | Código pronto; falta a conta (decisão D5, #21). GoatCounter com o código `douglasabnovato`, sem cookie, só no site publicado; evento `pedido-diagnostico` no envio com sucesso, sem o que foi digitado. Testes conferem que o script não carrega em localhost nem nos testes e que usa o código certo no endereço publicado |
 | 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende | Testes de erro por campo, falha de envio e envio com sucesso, 03/11 |
-| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Atende | Lighthouse móvel no site publicado, mediana de 1,72 s depois do PR #30, 06/11 (#28) |
+| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Atende | Lighthouse 12.8.2 móvel no site publicado, 10/11/2026: 1,83 / 1,60 / 1,55 s, mediana 1,60 s, TBT 100 ms, elemento do LCP `.hero-content > p` |
 | 8 | Acessibilidade básica | Lighthouse e teclado | Atende | Lighthouse 100; `tests/foco.spec.mjs` confere contorno e contraste de 3:1 em todo Tab, 03/11 (#27) |
-| 9 | Segurança e conformidade | Riscos decididos; termos cumpridos | Parcial | Depoimentos e "98%" sem confirmação (#19) |
-| 10 | Entrega confiável | Publicação só depois de CI verde | Atende | `gh api repos/douglasabnovato/facil-admin-gestao/rulesets`, 10/11/2026: ruleset `principal-protegida` ativo (exige PR, bloqueia force push e exclusão); o workflow `CI` (jobs `links` e `fluxo`) roda em PRs para `main` e `developer/**`. O Pages publica a `main`, que só recebe merge de PR (#20) |
-| 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende | 10 testes Playwright no job `fluxo`, 03/11 |
-| 12 | Documentação honesta | Qualquer pessoa roda o projeto, e os números estão certos | Atende | README com comandos e próximos passos, 03/11 |
+| 9 | Segurança e conformidade | Riscos decididos; termos cumpridos | Atende | Decisão D4: depoimentos e o "98%" aparecem como ilustrativos na tela, com teste (`depoimentos e o "98%" aparecem marcados como ilustrativos`), 10/11/2026; a confirmação real segue na #19. `npm audit --omit=dev`: 0 vulnerabilidades; Dependabot desligado no repositório (API 403), 10/11/2026 |
+| 10 | Entrega confiável | Publicação só depois de CI verde | Atende | `gh api repos/douglasabnovato/facil-admin-gestao/rules/branches/main`, 10/11/2026: `required_status_checks` com `fluxo` e `links`, além de PR obrigatório e bloqueio de force push e exclusão. O Pages publica a `main`, que só recebe o que passou no CI (#20) |
+| 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende | 13 testes Playwright no job `fluxo`, 10/11/2026 |
+| 12 | Documentação honesta | Qualquer pessoa roda o projeto, e os números estão certos | Atende | README com comandos conferidos contra o `package.json` e próximos passos, 10/11/2026 |
+
+## Histórico
+
+- 03/11/2026, critério 10 revisto em 10/11/2026: 9 de 12. O 3 estava "Parcial" (envio real e pessoa de fora), o 9 "Parcial" (depoimentos e "98%" sem confirmação) e o 5 "Não atende".
 
 ## Medições de 03/11/2026
 

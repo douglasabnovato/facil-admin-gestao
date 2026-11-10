@@ -2,6 +2,29 @@
  * script.js · FacilAdmin: menu móvel, rolagem com compensação do cabeçalho, carrossel acessível
  * (pausa, teclado, movimento reduzido) e envio do formulário ao Formspree com validação por campo.
  */
+/*
+ * Medição com GoatCounter (decisão D5 de 10/11/2026): sem cookie e sem dado pessoal.
+ * Só no site publicado; fica fora em localhost e em navegador automatizado (testes).
+ */
+const GOATCOUNTER_URL = "https://douglasabnovato.goatcounter.com/count";
+const deveMedir = () =>
+  !navigator.webdriver && !["localhost", "127.0.0.1", "[::1]", ""].includes(location.hostname);
+
+if (deveMedir()) {
+  const gc = document.createElement("script");
+  gc.async = true;
+  gc.src = "https://gc.zgo.at/count.js";
+  gc.dataset.goatcounter = GOATCOUNTER_URL;
+  document.head.appendChild(gc);
+}
+
+/* Registra um evento só com o nome; nada do que foi digitado vai junto. */
+const registrarEvento = (nome) => {
+  if (window.goatcounter && window.goatcounter.count) {
+    window.goatcounter.count({ path: nome, title: nome, event: true });
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector("header");
   const hamburger = document.querySelector(".hamburger-menu");
@@ -143,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       form.reset();
+      registrarEvento("pedido-diagnostico");
       form.hidden = true;
       feedback.hidden = false;
       feedback.focus();
