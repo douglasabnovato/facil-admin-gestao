@@ -1,6 +1,6 @@
 # FacilAdmin — Síndico Profissional e Ecossistema de Facilities
 
-> **Estado em 16/11/2026:** Página estática no GitHub Pages, Vitrine (N2), 11 de 12 critérios atendidos. O envio usa o Formspree, simulado nos testes; o envio real não foi testado (#22). Veja [Estado e próximos passos](#estado-e-próximos-passos-ciclo-de-16112026) e [docs/MVP.md](docs/MVP.md).
+> **Estado em 16/11/2026:** Página estática no GitHub Pages, Vitrine (N2), 10 de 12 critérios atendidos. O envio usa o Formspree, simulado nos testes; o envio real não foi testado (#22). Veja [Estado e próximos passos](#estado-e-próximos-passos-ciclo-de-16112026) e [docs/MVP.md](docs/MVP.md).
 
 ## Descrição e Objetivo do Projeto
 
@@ -52,7 +52,7 @@ As 5 capturas do envio que ficavam em `.github/` saíram do repositório em 29/0
 
 Página publicada (HTTP 200 em 16/11/2026): https://douglasabnovato.github.io/facil-admin-gestao/
 
-**Estado em 16/11/2026:** Vitrine (N2), 11 de 12 critérios atendidos; **Finalizado: sim**. O único parcial depende do responsável: a conta do GoatCounter (#21). Os alertas do Dependabot foram ligados em 16/11/2026 e mostram 0 abertos (15h07), com `npm audit --omit=dev` sem vulnerabilidades. A `main` exige os jobs `fluxo` e `links` verdes. Detalhes em [docs/MVP.md](docs/MVP.md).
+**Estado em 16/11/2026:** Vitrine (N2), 10 de 12 critérios atendidos; **Finalizado: sim**. Os dois parciais dependem do responsável: a conta do GoatCounter (#21) e o prazo de guarda e o contato da página de privacidade (#26), que seguram o critério 9. Os alertas do Dependabot foram ligados em 16/11/2026 e mostram 0 abertos (12h07), com `npm audit --omit=dev` sem vulnerabilidades. A `main` exige os jobs `fluxo` e `links` verdes. Detalhes em [docs/MVP.md](docs/MVP.md).
 
 ### O que foi feito
 
