@@ -72,6 +72,40 @@ test('a falha no envio mostra a mensagem e mantém os dados', async ({ page }) =
   await expect(page.locator('#name')).toHaveValue('Ana Souza');
 });
 
+test('sem rede, a mensagem não cita canal que não existe e os dados ficam', async ({ page }) => {
+  await page.route(FORMSPREE, (r) => r.abort('internetdisconnected'));
+  await page.goto('/');
+  const form = await preencher(page);
+  await form.locator('.btn-submit').click();
+  const aviso = page.locator('#form-status');
+  await expect(aviso).toContainText('Não foi possível enviar agora');
+  // O WhatsApp ainda não existe (#23): a mensagem não pode mandar a pessoa para lá.
+  await expect(aviso).not.toContainText('WhatsApp');
+  await expect(page.locator('#message')).toHaveValue('Condomínio com 40 unidades, preciso de síndico.');
+  await expect(form.locator('.btn-submit')).toBeEnabled();
+});
+
+test('durante o envio, o botão avisa e não aceita um segundo clique', async ({ page }) => {
+  let liberar;
+  const espera = new Promise((resolve) => { liberar = resolve; });
+  let pedidos = 0;
+  await page.route(FORMSPREE, async (r) => {
+    pedidos += 1;
+    await espera;
+    await r.fulfill({ status: 200, json: { ok: true } });
+  });
+  await page.goto('/');
+  const form = await preencher(page);
+  const botao = form.locator('.btn-submit');
+  await botao.click();
+  await expect(botao).toBeDisabled();
+  await expect(botao).toContainText('Enviando');
+  await botao.click({ force: true });
+  liberar();
+  await expect(page.locator('#form-feedback')).toBeVisible();
+  expect(pedidos).toBe(1);
+});
+
 test('a seção "Como contratar" mostra os 4 passos e abre as perguntas pelo teclado', async ({ page }) => {
   await page.goto('/');
   const secao = page.locator('#como-contratar');
