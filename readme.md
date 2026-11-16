@@ -52,12 +52,16 @@ Este projeto segue uma abordagem de design e usabilidade centrada no usuário, c
 
 ---
 
-## Estado e próximos passos (ciclo de 03/11/2026)
+## Estado e próximos passos (ciclo de 10/11/2026)
 
-Página publicada (HTTP 200 em 06/11/2026): https://douglasabnovato.github.io/facil-admin-gestao/
+Página publicada (HTTP 200 em 10/11/2026): https://douglasabnovato.github.io/facil-admin-gestao/
+
+**Estado em 10/11/2026:** Vitrine (N2), 11 de 12 critérios atendidos; **Finalizado: sim**. Falta só a conta do GoatCounter, do responsável (#21). A `main` exige os jobs `fluxo` e `links` verdes desde 10/11/2026. Detalhes em [docs/MVP.md](docs/MVP.md).
 
 ### O que foi feito
 
+- Medição com GoatCounter pronta no código, sem cookie e só no site publicado, com o evento `pedido-diagnostico` (ciclo de 10/11/2026).
+- Depoimentos e o "98%" marcados como ilustrativos na tela, com teste (ciclo de 10/11/2026).
 - CI também nos PRs e pushes da `developer/**` ([#29](https://github.com/douglasabnovato/facil-admin-gestao/pull/29)).
 - Foco visível com contraste de 3:1 e menu fechado fora do Tab, com teste ([#27](https://github.com/douglasabnovato/facil-admin-gestao/issues/27), PR #29).
 - Fonte Poppins no próprio site e fotos com `srcset` para o celular: LCP móvel com mediana de 1,72 s no site publicado em 06/11 ([#28](https://github.com/douglasabnovato/facil-admin-gestao/issues/28), PR #29).
@@ -68,9 +72,9 @@ Página publicada (HTTP 200 em 06/11/2026): https://douglasabnovato.github.io/fa
 
 Com o responsável:
 
-- Confirmar depoimentos e o "98%" ([#19](https://github.com/douglasabnovato/facil-admin-gestao/issues/19)).
-- Proteger a `main` com PR e CI ([#20](https://github.com/douglasabnovato/facil-admin-gestao/issues/20)).
-- Medir o uso sem dados pessoais ([#21](https://github.com/douglasabnovato/facil-admin-gestao/issues/21)).
+- Confirmar depoimentos e o "98%" para tirar o aviso de ilustrativo ([#19](https://github.com/douglasabnovato/facil-admin-gestao/issues/19)).
+- Proteger a `main`: feito em 10/11/2026; a [#20](https://github.com/douglasabnovato/facil-admin-gestao/issues/20) fecha no merge da `main`.
+- Criar a conta do GoatCounter com o código `douglasabnovato` ([#21](https://github.com/douglasabnovato/facil-admin-gestao/issues/21)).
 - Enviar um pedido real e testar com alguém de fora ([#22](https://github.com/douglasabnovato/facil-admin-gestao/issues/22)).
 - Informar os links das redes ([#23](https://github.com/douglasabnovato/facil-admin-gestao/issues/23)).
 
