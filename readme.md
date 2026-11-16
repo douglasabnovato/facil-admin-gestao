@@ -61,7 +61,7 @@ Página publicada (HTTP 200 em 16/11/2026): https://douglasabnovato.github.io/fa
   - axe no Playwright e no CI ([#24](https://github.com/douglasabnovato/facil-admin-gestao/issues/24)), reprovando também o contraste que o axe não consegue medir; isso achou o botão secundário do topo com 3,32:1, já corrigido;
   - fundos sólidos no topo e no cabeçalho, e setas do carrossel em SVG;
   - falha no envio sem citar o WhatsApp, que ainda não existe, com testes sem rede e de espera;
-  - Pages por Actions pronto e desligado, publicando só os arquivos da página (cerca de 1,6 MB), à espera do responsável ([#37](https://github.com/douglasabnovato/facil-admin-gestao/issues/37));
+  - Pages por Actions pronto e desligado, publicando só os arquivos da página (cerca de 1,4 MB), à espera do responsável ([#37](https://github.com/douglasabnovato/facil-admin-gestao/issues/37));
   - `verificar-links` também no README.
 - Ciclo de 10/11/2026 (PR [#35](https://github.com/douglasabnovato/facil-admin-gestao/pull/35)): medição com GoatCounter pronta no código e depoimentos e "98%" marcados como ilustrativos.
 - Ciclo de 03/11/2026 (PR [#29](https://github.com/douglasabnovato/facil-admin-gestao/pull/29)): foco visível com contraste de 3:1 ([#27](https://github.com/douglasabnovato/facil-admin-gestao/issues/27)), fonte local e `srcset` ([#28](https://github.com/douglasabnovato/facil-admin-gestao/issues/28)), seção "Como contratar" e CI nos PRs da `developer/**`.

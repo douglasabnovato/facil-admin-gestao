@@ -28,12 +28,12 @@ citar('style.css', [...css.matchAll(/url\(["']?([^"')]+)/gi)].map((m) => m[1]));
 const manifesto = JSON.parse(readFileSync(join(SAIDA, 'public', 'site.webmanifest'), 'utf8'));
 citar('public/site.webmanifest', manifesto.icons.map((i) => i.src));
 
-const faltando = refs
+const locais = refs
   .filter(({ r }) => !/^([a-z]+:|\/\/)/i.test(r))
-  .map(({ arquivo, r }) => posix.join(dirname(arquivo), decodeURIComponent(r)))
-  .filter((caminho) => !existsSync(join(SAIDA, caminho)));
+  .map(({ arquivo, r }) => posix.join(dirname(arquivo), decodeURIComponent(r)));
+const faltando = locais.filter((caminho) => !existsSync(join(SAIDA, caminho)));
 if (faltando.length) {
   console.error('Fora de _site:', faltando);
   process.exit(1);
 }
-console.log(`_site montado; ${refs.length} referências conferidas`);
+console.log(`_site montado; ${locais.length} referências locais conferidas`);

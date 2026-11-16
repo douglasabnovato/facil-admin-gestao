@@ -8,7 +8,7 @@ Como a landing page vai ao ar, em hospedagem gratuita. Revisto em 16/11/2026.
 |---|---|
 | Endereço | https://douglasabnovato.github.io/facil-admin-gestao/ (HTTP 200 em 16/11/2026) |
 | Hospedagem | GitHub Pages, modo legado: **Deploy from a branch**, `main`, pasta `/ (root)` |
-| O que vai ao ar | O repositório inteiro, inclusive `docs/`, `tests/` e cerca de 47 MB de imagens que a página não usa (#25) |
+| O que vai ao ar | O repositório inteiro, inclusive `docs/`, `tests/` e cerca de 45 MB de imagens que a página não usa (`images/` e os PNG de `profile/`, somados com `git ls-files` e `stat` em 16/11/2026; #25) |
 | Proteção | A `main` só recebe PR com os jobs `fluxo` e `links` verdes (ruleset lido em 16/11/2026) |
 | Versão no ar | `index.html`, `style.css` e `script.js` com o mesmo md5 da `main` (`893d082`) em 16/11/2026 |
 | Formulário | Formspree, `https://formspree.io/f/xwpqnzoa`, por `fetch` |
@@ -19,7 +19,7 @@ Como a landing page vai ao ar, em hospedagem gratuita. Revisto em 16/11/2026.
 O workflow [`.github/workflows/pages.yml`](../.github/workflows/pages.yml) já está no repositório e fica desligado. Ele:
 
 1. espera o workflow `CI` terminar verde num push na `main`;
-2. roda `node scripts/montar-site.mjs`, que copia para `_site` só o que a página usa (HTML, CSS, JS, fontes, ícones e os WebP de `profile/`, cerca de 1,6 MB) e falha se faltar algum arquivo citado;
+2. roda `node scripts/montar-site.mjs`, que copia para `_site` só o que a página usa (HTML, CSS, JS, fontes, ícones e os WebP de `profile/`, cerca de 1,4 MB, medido com `du -sb _site` em 16/11/2026) e falha se faltar algum arquivo citado;
 3. publica `_site` no Pages.
 
 O `montar-site.mjs` também roda no job `links` do CI, em todo PR. Assim o pacote é conferido antes de chegar à `main`.

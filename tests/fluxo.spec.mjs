@@ -85,7 +85,7 @@ test('sem rede, a mensagem não cita canal que não existe e os dados ficam', as
   await expect(form.locator('.btn-submit')).toBeEnabled();
 });
 
-test('durante o envio, o botão avisa e não aceita um segundo clique', async ({ page }) => {
+test('durante o envio, o botão fica desligado, avisa "Enviando" e só um pedido sai', async ({ page }) => {
   let liberar;
   const espera = new Promise((resolve) => { liberar = resolve; });
   let pedidos = 0;
