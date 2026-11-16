@@ -180,13 +180,16 @@ h3 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Caso especial: Botão secundário dentro da seção escura (Diferencial CTO) */
+/* Caso especial: Botão secundário dentro das seções escuras (topo e Diferencial CTO).
+   No topo, o texto escuro sobre o cinza translúcido dava 3,32:1; o gradiente escondia isso do axe. */
+.hero-dashboard .btn-secondary,
 .diferencial-cto .btn-secondary {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
 }
 
+.hero-dashboard .btn-secondary:hover,
 .diferencial-cto .btn-secondary:hover {
   background-color: rgba(255, 255, 255, 0.15);
   border-color: #ffffff;
@@ -207,10 +210,9 @@ h3 {
 }
 
 /* HEADER FIXO */
+/* Fundo sólido: sobre o topo escuro, um branco translúcido deixa o contraste sem medida no axe */
 header {
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: #ffffff;
   padding: 1rem 0;
   position: fixed;
   width: 100%;
@@ -261,7 +263,8 @@ header .container {
 /* HERO SECTION */
 .hero-dashboard {
   padding: 130px 0 70px;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  /* Cor sólida (o início do gradiente antigo): com gradiente, o axe não mede o contraste do texto */
+  background-color: #0f172a;
   color: var(--white);
   overflow: hidden;
 }
@@ -291,9 +294,8 @@ header .container {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #60a5fa, #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* Antes um gradiente recortado no texto, que o axe não mede; o azul claro dá 9,9:1 sobre o topo */
+  color: #93c5fd;
 }
 
 .badge-tech {
