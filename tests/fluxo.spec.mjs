@@ -33,12 +33,20 @@ test('o menu móvel abre e fecha com Esc', async ({ page }) => {
   await expect(botao).toBeFocused();
 });
 
-test('em 375 px não há rolagem horizontal', async ({ page }) => {
-  await page.setViewportSize({ width: 375, height: 800 });
-  await page.goto('/');
-  const largura = await page.evaluate(() => document.documentElement.scrollWidth);
-  expect(largura).toBeLessThanOrEqual(375);
-});
+for (const largura of [320, 375]) {
+  test(`em ${largura} px nada passa da tela, nem o formulário`, async ({ page }) => {
+    await page.setViewportSize({ width: largura, height: 800 });
+    await page.goto('/');
+    // html e body escondem o excesso com overflow-x: hidden; liberado aqui, o excesso aparece na medida.
+    await page.addStyleTag({ content: 'html, body { overflow-x: visible !important; }' });
+    const total = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(total).toBeLessThanOrEqual(largura);
+    for (const seletor of ['#contact-form .btn-submit', '#message', '.form-privacy']) {
+      const caixa = await page.locator(seletor).boundingBox();
+      expect(caixa.x + caixa.width, seletor).toBeLessThanOrEqual(largura);
+    }
+  });
+}
 
 test('o formulário vazio aponta o erro e foca o primeiro campo', async ({ page }) => {
   await page.goto('/');
