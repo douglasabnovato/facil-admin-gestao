@@ -1,6 +1,6 @@
 # FacilAdmin — Síndico Profissional e Ecossistema de Facilities
 
-> **Estado em 06/11/2026:** Página estática no GitHub Pages. O envio usa o Formspree. Testes: `npm ci`, `npx playwright install chromium` e `npm test`, com o Formspree simulado. O envio real não foi testado. Veja [Estado e próximos passos](#estado-e-próximos-passos-ciclo-de-03112026) e [docs/MVP.md](docs/MVP.md).
+> **Estado em 16/11/2026:** Página estática no GitHub Pages, Vitrine (N2), 10 de 12 critérios atendidos. O envio usa o Formspree, simulado nos testes; o envio real não foi testado (#22). Veja [Estado e próximos passos](#estado-e-próximos-passos-ciclo-de-16112026) e [docs/MVP.md](docs/MVP.md).
 
 ## Descrição e Objetivo do Projeto
 
@@ -48,53 +48,64 @@ As 5 capturas do envio que ficavam em `.github/` saíram do repositório em 29/0
 
 ---
 
-## Estado e próximos passos (ciclo de 10/11/2026)
+## Estado e próximos passos (ciclo de 16/11/2026)
 
-Página publicada (HTTP 200 em 10/11/2026): https://douglasabnovato.github.io/facil-admin-gestao/
+Página publicada (HTTP 200 em 16/11/2026): https://douglasabnovato.github.io/facil-admin-gestao/
 
-**Estado em 10/11/2026:** Vitrine (N2), 11 de 12 critérios atendidos; **Finalizado: sim**. Falta só a conta do GoatCounter, do responsável (#21). A `main` exige os jobs `fluxo` e `links` verdes desde 10/11/2026. Detalhes em [docs/MVP.md](docs/MVP.md).
+**Estado em 16/11/2026:** Vitrine (N2), 10 de 12 critérios atendidos; **Finalizado: sim**. Os 2 parciais dependem do responsável: a conta do GoatCounter (#21) e ligar os alertas do Dependabot (#36). A `main` exige os jobs `fluxo` e `links` verdes. Detalhes em [docs/MVP.md](docs/MVP.md).
 
 ### O que foi feito
 
-- Medição com GoatCounter pronta no código, sem cookie e só no site publicado, com o evento `pedido-diagnostico` (ciclo de 10/11/2026).
-- Depoimentos e o "98%" marcados como ilustrativos na tela, com teste (ciclo de 10/11/2026).
-- CI também nos PRs e pushes da `developer/**` ([#29](https://github.com/douglasabnovato/facil-admin-gestao/pull/29)).
-- Foco visível com contraste de 3:1 e menu fechado fora do Tab, com teste ([#27](https://github.com/douglasabnovato/facil-admin-gestao/issues/27), PR #29).
-- Fonte Poppins no próprio site e fotos com `srcset` para o celular: LCP móvel com mediana de 1,72 s no site publicado em 06/11 ([#28](https://github.com/douglasabnovato/facil-admin-gestao/issues/28), PR #29).
-- Seção "Como contratar", com 4 passos e perguntas ao candidato, baseada no Código Civil e em guias do setor (PR #29).
-- Critérios do MVP revistos com evidência (PRs [#17](https://github.com/douglasabnovato/facil-admin-gestao/pull/17), [#18](https://github.com/douglasabnovato/facil-admin-gestao/pull/18) e #29).
+- Ciclo de 16/11/2026 (PR feature → sprint [#41](https://github.com/douglasabnovato/facil-admin-gestao/pull/41)):
+  - formulário de contato que cabe no celular: em 375 px ele ia até 445 px, escondido pelo `overflow-x` da página; agora há teste em 320 e 375 px;
+  - axe no Playwright e no CI ([#24](https://github.com/douglasabnovato/facil-admin-gestao/issues/24)), reprovando também o contraste que o axe não consegue medir; isso achou o botão secundário do topo com 3,32:1, já corrigido;
+  - fundos sólidos no topo e no cabeçalho, e setas do carrossel em SVG;
+  - falha no envio sem citar o WhatsApp, que ainda não existe, com testes sem rede e de espera;
+  - Pages por Actions pronto e desligado, publicando só os arquivos da página (cerca de 1,6 MB), à espera do responsável ([#37](https://github.com/douglasabnovato/facil-admin-gestao/issues/37));
+  - `verificar-links` também no README.
+- Ciclo de 10/11/2026 (PR [#35](https://github.com/douglasabnovato/facil-admin-gestao/pull/35)): medição com GoatCounter pronta no código e depoimentos e "98%" marcados como ilustrativos.
+- Ciclo de 03/11/2026 (PR [#29](https://github.com/douglasabnovato/facil-admin-gestao/pull/29)): foco visível com contraste de 3:1 ([#27](https://github.com/douglasabnovato/facil-admin-gestao/issues/27)), fonte local e `srcset` ([#28](https://github.com/douglasabnovato/facil-admin-gestao/issues/28)), seção "Como contratar" e CI nos PRs da `developer/**`.
 
 ### O que queremos fazer
 
 Com o responsável:
 
-- Confirmar depoimentos e o "98%" para tirar o aviso de ilustrativo ([#19](https://github.com/douglasabnovato/facil-admin-gestao/issues/19)).
-- Proteger a `main`: feito em 10/11/2026; a [#20](https://github.com/douglasabnovato/facil-admin-gestao/issues/20) fecha no merge da `main`.
 - Criar a conta do GoatCounter com o código `douglasabnovato` ([#21](https://github.com/douglasabnovato/facil-admin-gestao/issues/21)).
+- Ligar os alertas do Dependabot ([#36](https://github.com/douglasabnovato/facil-admin-gestao/issues/36)).
+- Trocar a fonte do Pages para "GitHub Actions" ([#37](https://github.com/douglasabnovato/facil-admin-gestao/issues/37)).
+- Confirmar depoimentos e o "98%" ([#19](https://github.com/douglasabnovato/facil-admin-gestao/issues/19)).
 - Enviar um pedido real e testar com alguém de fora ([#22](https://github.com/douglasabnovato/facil-admin-gestao/issues/22)).
 - Informar os links das redes ([#23](https://github.com/douglasabnovato/facil-admin-gestao/issues/23)).
+- Dar o aval para tirar as imagens não usadas ([#25](https://github.com/douglasabnovato/facil-admin-gestao/issues/25)).
 
 Com o agente:
 
-- axe-core no CI ([#24](https://github.com/douglasabnovato/facil-admin-gestao/issues/24)).
-- Tirar as imagens não usadas, com aval do responsável ([#25](https://github.com/douglasabnovato/facil-admin-gestao/issues/25)).
-- Página de privacidade ([#26](https://github.com/douglasabnovato/facil-admin-gestao/issues/26)).
+- Medir o LCP de novo depois da publicação deste ciclo ([#38](https://github.com/douglasabnovato/facil-admin-gestao/issues/38)).
+- Rodar os testes contra a pasta `_site` ([#39](https://github.com/douglasabnovato/facil-admin-gestao/issues/39)).
+- Atualizar o Playwright ([#40](https://github.com/douglasabnovato/facil-admin-gestao/issues/40)).
+- Página de privacidade, à espera do canal de contato ([#26](https://github.com/douglasabnovato/facil-admin-gestao/issues/26)).
 
 O sistema de gestão (dashboard, API) fica na `facil-admin-plataforma`.
 
 ### Onde está a documentação
 
 - Estado e critérios: [docs/MVP.md](docs/MVP.md).
-- Plano do ciclo: [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md#ciclo-de-03112026).
+- Plano do ciclo: [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md#ciclo-de-16112026).
+- Publicação e conferência do site no ar: [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ### Rodar os testes
 
+Pede Node 22.12 ou mais novo (o `@axe-core/playwright` 4.14 exige).
+
 ```bash
-node scripts/verificar-links.mjs
 npm ci
 npx playwright install chromium
+node scripts/verificar-links.mjs
+node scripts/montar-site.mjs
 npm test
 ```
+
+Os testes usam a porta 4173. Se ela estiver ocupada: `PORTA=4627 npm test`.
 
 ---
 
@@ -166,7 +177,7 @@ Site estático, sem build. Abra o `index.html` com uma extensão como Live Serve
 
 **Demonstração:** https://douglasabnovato.github.io/facil-admin-gestao/
 
-- GitHub Pages publicando a branch `main` (pasta raiz), sem build e sem workflow; `.nojekyll` desliga o Jekyll.
+- GitHub Pages publicando a branch `main` (pasta raiz), sem build; `.nojekyll` desliga o Jekyll. O workflow `pages.yml`, que publica só os arquivos da página, está pronto e desligado até o responsável trocar a fonte do Pages (#37).
 - O formulário envia pelo Formspree.
 - Passo a passo completo: [docs/DEPLOY.md](docs/DEPLOY.md).
 
@@ -177,6 +188,8 @@ Site estático, sem build. Abra o `index.html` com uma extensão como Live Serve
 | [docs/ANALISE.md](./docs/ANALISE.md) | Requisitos, diagnóstico, rubrica e notas |
 | [docs/ARQUITETURA.md](./docs/ARQUITETURA.md) | C4, funil da página e ADRs |
 | [docs/PLANO-DE-ACAO.md](./docs/PLANO-DE-ACAO.md) | Tarefas priorizadas por MoSCoW |
+
+Nota antiga, de 27/09/2026, mantida como histórico. O estado atual está em [docs/MVP.md](docs/MVP.md).
 
 | Momento | Nota MVP | Situação |
 |---|---|---|

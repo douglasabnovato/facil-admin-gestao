@@ -1,28 +1,31 @@
 # MVP — critérios
 
-> Revisão de 10/11/2026 (ciclo da faixa de 90%, decisões D1 a D7 do repositório `engenharia`). Mesmos 12 critérios do `movies`. "Não medido" significa que não há evidência, não que falhe.
+> Revisão de 16/11/2026 (ciclo de 16/11, branch `feature/2026-11-16` → `developer/sprint-2026-11-19`). Cada "Atende" tem comando, data e resultado. "Não medido" significa que não há evidência, não que falhe.
 
 **Nível:** Vitrine (N2), 12 critérios se aplicam.
-**Resumo:** 11 de 12 aplicáveis atendidos; 1 parcial (5), que depende da conta do responsável.
-**Finalizado:** sim — falta só a conta do GoatCounter, do responsável (#21, com `depende-do-responsavel`).
+**Resumo:** 10 de 12 aplicáveis atendidos; 2 parciais (5 e 9), os dois dependem do responsável (#21 e #36).
+**Finalizado:** sim — o que falta é a conta do GoatCounter (#21) e ligar os alertas do Dependabot (#36), ambos com `depende-do-responsavel`.
+
+**Hipótese:** Acreditamos que explicar o serviço de síndico profissional e pedir só 4 dados fará ao menos 1 em cada 20 visitantes vindos de indicação pedir o diagnóstico. Saberemos quando o GoatCounter mostrar, em 4 semanas, ao menos 1 evento `pedido-diagnostico` para cada 20 visitas. Meta decidida pelo coordenador em 10/11/2026 (decisão D1), revisável pelo responsável.
 
 | # | Critério | Como verificar | Situação | Evidência e data |
 |---|---|---|---|---|
-| 1 | Problema e público claros | Dá para explicar em uma frase | Atende | `PLANO-DE-ACAO.md`, ciclo de 03/11 |
-| 2 | Hipótese a validar | Existe uma aposta escrita, com meta | Atende | Meta decidida pelo coordenador em 10/11/2026 (decisão D1), revisável pelo responsável. Aposta em "Revisão de 02/11/2026", abaixo |
-| 3 | Fluxo principal completo | Uma pessoa conclui sem ajuda | Atende | Decisão D2. `npx playwright test`, 10/11/2026: 13 testes, 0 falhas; o envio do pedido (sucesso e falha) roda no navegador com o Formspree simulado. No ar, sem enviar dado: a página publicada usa `action="https://formspree.io/f/xwpqnzoa"`; `curl` no endereço dá 405 (o formulário existe; um ID inexistente dá 404 `FORM_NOT_FOUND`) e o preflight responde `Access-Control-Allow-Origin: https://douglasabnovato.github.io`, 10/11/2026. Conferir a chegada no e-mail e o teste com pessoa de fora viraram validação (#22) |
-| 4 | Escopo enxuto | O que não entra está registrado | Atende | `PLANO-DE-ACAO.md`, "Fora do escopo", 03/11 |
-| 5 | Medição de uso | A métrica principal é coletada | Parcial | Código pronto; falta a conta (decisão D5, #21). GoatCounter com o código `douglasabnovato`, sem cookie, só no site publicado; evento `pedido-diagnostico` no envio com sucesso, sem o que foi digitado. Testes conferem que o script não carrega em localhost nem nos testes e que usa o código certo no endereço publicado |
-| 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende | Testes de erro por campo, falha de envio e envio com sucesso, 03/11 |
-| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Atende | Lighthouse 12.8.2 móvel no site publicado, 10/11/2026: 1,83 / 1,60 / 1,55 s, mediana 1,60 s, TBT 100 ms, elemento do LCP `.hero-content > p` |
-| 8 | Acessibilidade básica | Lighthouse e teclado | Atende | Lighthouse 100; `tests/foco.spec.mjs` confere contorno e contraste de 3:1 em todo Tab, 03/11 (#27) |
-| 9 | Segurança e conformidade | Riscos decididos; termos cumpridos | Atende | Decisão D4: depoimentos e o "98%" aparecem como ilustrativos na tela, com teste (`depoimentos e o "98%" aparecem marcados como ilustrativos`), 10/11/2026; a confirmação real segue na #19. `npm audit --omit=dev`: 0 vulnerabilidades; Dependabot desligado no repositório (API 403), 10/11/2026 |
-| 10 | Entrega confiável | Publicação só depois de CI verde | Atende | `gh api repos/douglasabnovato/facil-admin-gestao/rules/branches/main`, 10/11/2026: `required_status_checks` com `fluxo` e `links`, além de PR obrigatório e bloqueio de force push e exclusão. O Pages publica a `main`, que só recebe o que passou no CI (#20) |
-| 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende | 13 testes Playwright no job `fluxo`, 10/11/2026 |
-| 12 | Documentação honesta | Qualquer pessoa roda o projeto, e os números estão certos | Atende | README com comandos conferidos contra o `package.json` e próximos passos, 10/11/2026 |
+| 1 | Problema e público claros | Dá para explicar em uma frase | Atende | Quem pensa em contratar um síndico profissional entende o serviço e pede um diagnóstico gratuito. `PLANO-DE-ACAO.md`, ciclos de 03/11 e 16/11/2026 |
+| 2 | Hipótese a validar | Aposta escrita, com meta | Atende | Hipótese acima, com meta (1 em 20) e "saberemos quando" (GoatCounter, 4 semanas), 16/11/2026 |
+| 3 | Fluxo principal completo | Teste de ponta a ponta no navegador no CI | Atende | `npx playwright test`, 16/11/2026: 21 testes, 0 falhas. O envio do pedido (sucesso, falha do servidor, sem rede e espera) roda no Chromium com o Formspree simulado, no job `fluxo` do CI. No ar, sem enviar dado: `curl` em `https://formspree.io/f/xwpqnzoa` dá 405 (o formulário existe), 16/11/2026. Envio real e pessoa de fora seguem como validação (#22) |
+| 4 | Escopo enxuto | O que não entra está registrado | Atende | `PLANO-DE-ACAO.md`, "Fora do escopo", 03/11 e 16/11/2026 |
+| 5 | Medição de uso | Painel com visitas | Parcial | Código pronto: GoatCounter com o código `douglasabnovato`, sem cookie, só no site publicado, e evento `pedido-diagnostico` no envio com sucesso, com testes. Falta a conta, do responsável (#21) |
+| 6 | Falhas tratadas | Testes de falha de rede, vazio e espera | Atende | `tests/fluxo.spec.mjs`, 16/11/2026: formulário vazio (erro por campo e foco no primeiro), falha do servidor (500), sem rede (`route.abort`), espera (botão "Enviando" desligado, um pedido só) e sucesso. A mensagem de falha não cita mais o WhatsApp, que não existe |
+| 7 | Desempenho aceitável | LCP até 2,5 s no celular, site publicado | Atende | Lighthouse 12.8.2 móvel em https://douglasabnovato.github.io/facil-admin-gestao/, 16/11/2026: LCP 1,75 / 1,71 / 1,72 s, mediana 1,72 s; TBT 100 / 155 / 17 ms; elemento do LCP `.hero-content > p`. Build medido: `main` `893d082` (md5 de `index.html`, `style.css` e `script.js` no ar igual ao da `main`). Este ciclo muda o CSS do topo: medir de novo depois da publicação (#38) |
+| 8 | Acessibilidade básica | axe e teclado | Atende | `tests/acessibilidade.spec.mjs`, 16/11/2026: axe sem violações e sem "incomplete" de contraste no computador (1280 px), com o mouse sobre os 2 botões do topo, no celular (375 px) com o menu aberto e no formulário com erros, com as transições desligadas. `tests/foco.spec.mjs`: contorno de 3:1 em todo Tab, no computador e no celular; `tests/fluxo.spec.mjs`: Esc fecha o menu e devolve o foco. O app não tem tema escuro próprio (o CSS não tem `prefers-color-scheme`), então só o claro é testado |
+| 9 | Segurança e conformidade | `npm audit` e alertas do Dependabot | Parcial | `npm audit --omit=dev`, 16/11/2026: 0 vulnerabilidades (não há dependência de produção). Alertas do Dependabot desligados: a API respondeu 403 em 16/11/2026. Pela regra em decisão (douglasabnovato/engenharia#33), fica "Parcial" até ligar os alertas (#36). Sem segredo no código; o formulário coleta nome, e-mail, telefone e mensagem, enviados ao Formspree, com aviso LGPD (página de privacidade em #26). Depoimentos e o "98%" marcados como ilustrativos, com teste (decisão D4; confirmação em #19) |
+| 10 | Entrega confiável | CI nos PRs e principal protegida | Atende | `gh api repos/douglasabnovato/facil-admin-gestao/rules/branches/main`, 16/11/2026: `deletion`, `non_fast_forward`, `pull_request` e `required_status_checks` com `fluxo` e `links`. O CI roda em PR e push para `main` e `developer/**` |
+| 11 | Testes dos fluxos críticos | Testes no CI, sem `skipped` | Atende | 21 testes Playwright no job `fluxo`; nenhum `skip` em `tests/` (`grep -rn skip tests/`, 16/11/2026) |
+| 12 | Documentação honesta | Qualquer pessoa roda o projeto | Atende | README e `docs/DEPLOY.md` com os comandos conferidos contra o `package.json` em 16/11/2026; `node scripts/verificar-links.mjs` passou a conferir também as imagens e os links do README (achou 5 capturas quebradas, tiradas neste ciclo). Link publicado com HTTP 200 em 16/11/2026 |
 
 ## Histórico
 
+- 10/11/2026: declarado 11 de 12 (só o 5 "Parcial"). Pela régua atual, o 8 estava sem axe e o 9 contava só o `npm audit` com o Dependabot desligado. Mediana do LCP no ar: 1,60 s.
 - 03/11/2026, critério 10 revisto em 10/11/2026: 9 de 12. O 3 estava "Parcial" (envio real e pessoa de fora), o 9 "Parcial" (depoimentos e "98%" sem confirmação) e o 5 "Não atende".
 
 ## Medições de 03/11/2026
