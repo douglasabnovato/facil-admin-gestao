@@ -43,11 +43,7 @@ Este projeto segue uma abordagem de design e usabilidade centrada no usuário, c
 
 ## Telas do Formulário de contato
 
-- ![Contato enviado](./.github/envio-email-1.png)
-- ![Painel](./.github/envio-email-2.png)
-- ![Detalhes de Recebidos](./.github/envio-email-3.png)
-- ![Mensagem Corrigida](./.github/envio-email-4.png)
-- ![Mensagem enviada com sucesso](./.github/envio-email-5.png)
+As 5 capturas do envio que ficavam em `.github/` saíram do repositório em 29/09/2026. O fluxo do formulário (erro por campo, falha e sucesso) é conferido pelos testes em `tests/fluxo.spec.mjs`.
 
 
 ---
