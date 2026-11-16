@@ -19,6 +19,8 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/verificar-links.mjs
+      # O mesmo pacote que o workflow Pages publica, conferido em todo PR
+      - run: node scripts/montar-site.mjs
   fluxo:
     runs-on: ubuntu-latest
     steps:
