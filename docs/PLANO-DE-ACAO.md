@@ -88,3 +88,71 @@
 
 **Vira issue.** #19, #20, #21, #22, #23 (responsável); #24, #26 (agente); #25 (agente, com aval do responsável).
 
+
+## Ciclo de 16/11/2026
+
+> Branch `feature/2026-11-16` → `developer/sprint-2026-11-19` → `main`. Nível: Vitrine (N2), 12 critérios. Publicação: GitHub Pages no modo legado (`main`, pasta raiz). O site no ar é o mesmo da `main` (`index.html`, `style.css` e `script.js` com o mesmo md5 da `main` em 16/11/2026).
+
+### Produto
+
+**Problema e público.** Os mesmos do ciclo de 03/11: quem pensa em contratar um síndico profissional entende o serviço e pede um diagnóstico gratuito.
+
+**Hipótese e meta.** Acreditamos que explicar o serviço e pedir só 4 dados fará ao menos 1 em cada 20 visitantes vindos de indicação pedir o diagnóstico. Saberemos quando o GoatCounter mostrar, em 4 semanas, a razão entre eventos `pedido-diagnostico` e visitas. Medir depende da conta do responsável (#21).
+
+**O que a análise achou.**
+- No celular (375 px), o formulário de contato passa da tela: campos e botão vão até 445 px. O botão de envio não quebra a linha e alarga a grade. O teste de rolagem lateral passava porque `html` e `body` escondem o excesso com `overflow-x: hidden`.
+- O critério 8 dizia "Atende" com o Lighthouse e o teste de foco, sem axe. A régua pede axe no navegador.
+- O axe não mede o contraste de 13 textos no topo e no cabeçalho, porque há gradiente ou fundo translúcido atrás deles. Ele devolve "incomplete", e um teste que olha só "violations" passa sem medir.
+- O critério 9 dizia "Atende" com o Dependabot desligado (API 403). Pela regra em decisão (engenharia#33), fica "Parcial".
+- O README mostra 5 capturas em `.github/` que saíram do repositório em 29/09/2026.
+
+**O que a pesquisa trouxe.**
+
+| Ideia | O que levamos para o projeto | Fonte |
+|---|---|---|
+| Em 320 px de largura, o conteúdo não pode exigir rolagem lateral nem ficar cortado | Grade do formulário com `minmax(0, 1fr)`, botão que quebra a linha e teste que mede a largura com o `overflow-x` liberado | [W3C: Understanding SC 1.4.10 Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html) |
+| Texto sobre gradiente ou imagem precisa ter contraste em todos os pontos; ferramentas automáticas não decidem esse caso | Fundos sólidos atrás do texto do topo e do cabeçalho, e o teste falha também com "incomplete" de `color-contrast` | [W3C: Understanding SC 1.4.3 Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html), [axe-core: API, objeto de resultados](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#results-object) |
+| O `@axe-core/playwright` roda o axe na página do teste, e os resultados se filtram por regra | Teste com axe no computador, no celular com o menu aberto e no formulário com erros | [Playwright: Accessibility testing](https://playwright.dev/docs/accessibility-testing) |
+| O Pages pode publicar por um workflow, que envia só os arquivos escolhidos e roda depois dos testes | Workflow `pages.yml` pronto e desligado por uma Variable, até o responsável trocar a fonte do Pages | [GitHub Docs: Using custom workflows with GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) |
+
+**Backlog priorizado (impacto × esforço).**
+
+| Prioridade | Item | Impacto | Esforço | Destino |
+|---|---|---|---|---|
+| 1 | Formulário que cabe no celular, com teste | Alto | Baixo | Este ciclo |
+| 2 | axe no Playwright, com "incomplete" de contraste (critério 8) | Alto | Baixo | Este ciclo (#24) |
+| 3 | Critério 9 honesto e issue de ligar os alertas do Dependabot | Médio | Baixo | Este ciclo e responsável |
+| 4 | README sem imagens quebradas, com `verificar-links` olhando o README | Médio | Baixo | Este ciclo |
+| 5 | Pages por workflow, só com os arquivos do site | Médio | Baixo | Este ciclo (código) e responsável (fonte do Pages) |
+| 6 | LCP medido de novo no site publicado | Médio | Baixo | Este ciclo |
+| 7 | Página de privacidade | Médio | Baixo | Issue (#26), espera o canal do responsável |
+
+**Fora do escopo.** Os mesmos de 03/11, e trocar a identidade visual. Os fundos que viram sólidos usam a cor mais escura do gradiente antigo.
+
+### Engenharia
+
+**Arquitetura.** Sem mudança: página estática sem build, Formspree por `fetch`, GitHub Pages. Novo: um workflow `pages.yml` que copia só os arquivos do site para `_site` e publica pelo Actions, desligado até a Variable `PAGES_VIA_ACTIONS` valer `true`.
+
+**Riscos.**
+- Os fundos sólidos mudam um pouco o visual do topo. A cor é a do início do gradiente antigo.
+- O Lighthouse local varia com a carga da máquina; vale a mediana de 3 execuções válidas.
+- O workflow do Pages só vale depois que o responsável trocar a fonte para "GitHub Actions".
+
+**Qualidade.**
+- Testes: axe no computador, no celular com o menu aberto e no formulário com erros, com as transições desligadas; o teste falha com qualquer violação e com "incomplete" de `color-contrast`.
+- O teste de rolagem lateral passa a medir com o `overflow-x` liberado.
+- `verificar-links` passa a conferir as imagens e os links relativos do README.
+- Segurança: `npm audit --omit=dev` (o projeto não tem dependência de produção); nenhum dado novo coletado.
+
+**Definição de pronto.** `node scripts/verificar-links.mjs` e `npm test` passam; CI verde no PR; revisão independente feita; `docs/MVP.md`, README e `docs/DEPLOY.md` atualizados; LCP medido no site publicado com o build citado.
+
+### Plano de ação
+
+**Este ciclo executa.**
+1. Formulário que cabe no celular, com teste que falha sem a correção.
+2. axe no Playwright e no CI, com os fundos sólidos e as setas do carrossel em SVG (#24).
+3. README sem as capturas quebradas e `verificar-links` olhando o README.
+4. Workflow do Pages pronto e desligado, com `docs/DEPLOY.md`.
+5. `docs/MVP.md` e README com os critérios revistos e o LCP medido.
+
+**Vira issue.** Ligar os alertas do Dependabot e trocar a fonte do Pages (responsável). #19, #21, #22, #23 e #25 seguem com o responsável; #26 segue com o agente, à espera do canal de contato.

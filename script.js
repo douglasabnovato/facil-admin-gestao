@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
       feedback.hidden = false;
       feedback.focus();
     } catch (error) {
-      status.textContent = "Não foi possível enviar agora. Verifique sua conexão e tente de novo, ou fale conosco pelo WhatsApp.";
+      status.textContent = "Não foi possível enviar agora. Verifique sua conexão e tente de novo em alguns minutos. Seus dados continuam no formulário.";
     } finally {
       submitButton.disabled = false;
       submitButton.innerHTML = originalText;
