@@ -33,12 +33,20 @@ test('o menu móvel abre e fecha com Esc', async ({ page }) => {
   await expect(botao).toBeFocused();
 });
 
-test('em 375 px não há rolagem horizontal', async ({ page }) => {
-  await page.setViewportSize({ width: 375, height: 800 });
-  await page.goto('/');
-  const largura = await page.evaluate(() => document.documentElement.scrollWidth);
-  expect(largura).toBeLessThanOrEqual(375);
-});
+for (const largura of [320, 375]) {
+  test(`em ${largura} px nada passa da tela, nem o formulário`, async ({ page }) => {
+    await page.setViewportSize({ width: largura, height: 800 });
+    await page.goto('/');
+    // html e body escondem o excesso com overflow-x: hidden; liberado aqui, o excesso aparece na medida.
+    await page.addStyleTag({ content: 'html, body { overflow-x: visible !important; }' });
+    const total = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(total).toBeLessThanOrEqual(largura);
+    for (const seletor of ['#contact-form .btn-submit', '#message', '.form-privacy']) {
+      const caixa = await page.locator(seletor).boundingBox();
+      expect(caixa.x + caixa.width, seletor).toBeLessThanOrEqual(largura);
+    }
+  });
+}
 
 test('o formulário vazio aponta o erro e foca o primeiro campo', async ({ page }) => {
   await page.goto('/');
@@ -62,6 +70,40 @@ test('a falha no envio mostra a mensagem e mantém os dados', async ({ page }) =
   await form.locator('.btn-submit').click();
   await expect(page.locator('#form-status')).not.toBeEmpty();
   await expect(page.locator('#name')).toHaveValue('Ana Souza');
+});
+
+test('sem rede, a mensagem não cita canal que não existe e os dados ficam', async ({ page }) => {
+  await page.route(FORMSPREE, (r) => r.abort('internetdisconnected'));
+  await page.goto('/');
+  const form = await preencher(page);
+  await form.locator('.btn-submit').click();
+  const aviso = page.locator('#form-status');
+  await expect(aviso).toContainText('Não foi possível enviar agora');
+  // O WhatsApp ainda não existe (#23): a mensagem não pode mandar a pessoa para lá.
+  await expect(aviso).not.toContainText('WhatsApp');
+  await expect(page.locator('#message')).toHaveValue('Condomínio com 40 unidades, preciso de síndico.');
+  await expect(form.locator('.btn-submit')).toBeEnabled();
+});
+
+test('durante o envio, o botão fica desligado, avisa "Enviando" e só um pedido sai', async ({ page }) => {
+  let liberar;
+  const espera = new Promise((resolve) => { liberar = resolve; });
+  let pedidos = 0;
+  await page.route(FORMSPREE, async (r) => {
+    pedidos += 1;
+    await espera;
+    await r.fulfill({ status: 200, json: { ok: true } });
+  });
+  await page.goto('/');
+  const form = await preencher(page);
+  const botao = form.locator('.btn-submit');
+  await botao.click();
+  await expect(botao).toBeDisabled();
+  await expect(botao).toContainText('Enviando');
+  await botao.click({ force: true });
+  liberar();
+  await expect(page.locator('#form-feedback')).toBeVisible();
+  expect(pedidos).toBe(1);
 });
 
 test('a seção "Como contratar" mostra os 4 passos e abre as perguntas pelo teclado', async ({ page }) => {

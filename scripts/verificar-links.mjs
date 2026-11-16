@@ -1,4 +1,4 @@
-// Falha se o index.html apontar para um arquivo local que não existe.
+// Falha se o index.html, o style.css ou o readme.md apontarem para um arquivo local que não existe.
 import { existsSync, readFileSync } from 'node:fs';
 
 const html = readFileSync('index.html', 'utf8');
@@ -9,6 +9,8 @@ for (const m of html.matchAll(/srcset=["']([^"']+)/gi)) {
 }
 // url() do CSS, relativo à raiz do site
 for (const m of readFileSync('style.css', 'utf8').matchAll(/url\(["']?([^"')]+)/gi)) refs.push(m[1]);
+// Imagens e links relativos do README: ![](caminho) e [](caminho), sem a âncora.
+for (const m of readFileSync('readme.md', 'utf8').matchAll(/\]\(([^)#\s]+)/g)) refs.push(m[1]);
 const locais = refs.filter((r) => !/^([a-z]+:|\/\/)/i.test(r));
 const faltando = locais.filter((r) => !existsSync(decodeURIComponent(r).replace(/^\.?\//, '')));
 if (faltando.length) {
