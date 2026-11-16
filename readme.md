@@ -52,7 +52,7 @@ As 5 capturas do envio que ficavam em `.github/` saíram do repositório em 29/0
 
 Página publicada (HTTP 200 em 16/11/2026): https://douglasabnovato.github.io/facil-admin-gestao/
 
-**Estado em 16/11/2026:** Vitrine (N2), 10 de 12 critérios atendidos; **Finalizado: sim**. Os 2 parciais dependem do responsável: a conta do GoatCounter (#21) e ligar os alertas do Dependabot (#36). A `main` exige os jobs `fluxo` e `links` verdes. Detalhes em [docs/MVP.md](docs/MVP.md).
+**Estado em 16/11/2026:** Vitrine (N2), 10 de 12 critérios atendidos; **Finalizado: sim**. Os dois parciais dependem do responsável: a conta do GoatCounter (#21) e o prazo de guarda e o contato da página de privacidade (#26), que seguram o critério 9. Os alertas do Dependabot foram ligados em 16/11/2026 e mostram 0 abertos (12h07), com `npm audit --omit=dev` sem vulnerabilidades. A `main` exige os jobs `fluxo` e `links` verdes. Detalhes em [docs/MVP.md](docs/MVP.md).
 
 ### O que foi feito
 
@@ -71,7 +71,7 @@ Página publicada (HTTP 200 em 16/11/2026): https://douglasabnovato.github.io/fa
 Com o responsável:
 
 - Criar a conta do GoatCounter com o código `douglasabnovato` ([#21](https://github.com/douglasabnovato/facil-admin-gestao/issues/21)).
-- Ligar os alertas do Dependabot ([#36](https://github.com/douglasabnovato/facil-admin-gestao/issues/36)).
+- Fechar a issue dos alertas do Dependabot, já ligados e sem alerta aberto em 16/11/2026 ([#36](https://github.com/douglasabnovato/facil-admin-gestao/issues/36)).
 - Trocar a fonte do Pages para "GitHub Actions" ([#37](https://github.com/douglasabnovato/facil-admin-gestao/issues/37)).
 - Confirmar depoimentos e o "98%" ([#19](https://github.com/douglasabnovato/facil-admin-gestao/issues/19)).
 - Enviar um pedido real e testar com alguém de fora ([#22](https://github.com/douglasabnovato/facil-admin-gestao/issues/22)).
