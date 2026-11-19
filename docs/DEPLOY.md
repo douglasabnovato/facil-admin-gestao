@@ -22,7 +22,7 @@ O workflow [`.github/workflows/pages.yml`](../.github/workflows/pages.yml) já e
 2. roda `node scripts/montar-site.mjs`, que copia para `_site` só o que a página usa (HTML, CSS, JS, fontes, ícones e os WebP de `profile/`, cerca de 1,4 MB, medido com `du -sb _site` em 16/11/2026) e falha se faltar algum arquivo citado;
 3. publica `_site` no Pages.
 
-O `montar-site.mjs` também roda no job `links` do CI, em todo PR. Assim o pacote é conferido antes de chegar à `main`.
+O `montar-site.mjs` também roda nos jobs `links` e `fluxo` do CI, em todo PR; no `fluxo`, os testes do navegador rodam de novo contra `_site`. Assim o pacote é conferido antes de chegar à `main`.
 
 ### Passo a passo do responsável (issue com `depende-do-responsavel`)
 
@@ -61,7 +61,7 @@ node scripts/montar-site.mjs
 npm test
 ```
 
-Os testes sobem um servidor na porta 4173. Se ela estiver ocupada, use outra: `PORTA=4627 npm test`. O `@axe-core/playwright` 4.14 pede Node 22.12 ou mais novo.
+Os testes sobem um servidor na porta 4173. Se ela estiver ocupada, use outra: `PORTA=4627 npm test`. Com `RAIZ=_site npm test`, o servidor serve o pacote do Pages; o job `fluxo` do CI roda os testes nas duas pastas, e `tests/site.spec.mjs` reprova qualquer pedido local com erro (404). O `@axe-core/playwright` 4.14 pede Node 22.12 ou mais novo.
 
 ## 5. Decisão de hospedagem
 

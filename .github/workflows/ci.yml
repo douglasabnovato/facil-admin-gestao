@@ -32,3 +32,8 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm test
+      # Os mesmos testes contra o pacote que o Pages publica (#39)
+      - run: node scripts/montar-site.mjs
+      - run: npm test
+        env:
+          RAIZ: _site

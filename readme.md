@@ -105,7 +105,7 @@ node scripts/montar-site.mjs
 npm test
 ```
 
-Os testes usam a porta 4173. Se ela estiver ocupada: `PORTA=4627 npm test`.
+Os testes usam a porta 4173. Se ela estiver ocupada: `PORTA=4627 npm test`. Para rodar contra o pacote que o Pages publica, depois do `montar-site`: `RAIZ=_site npm test` (o CI roda os dois).
 
 ---
 
