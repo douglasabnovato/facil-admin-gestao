@@ -26,7 +26,6 @@
 ## Histórico
 
 - 18/11/2026: segue 10 de 12. Critério 7 medido de novo no ar, no build `665dd8f` (mediana 1,51 s, #38). Playwright 1.65.1 (#40) e testes também contra `_site`, o pacote do Pages (#39), no PR #47.
-
 - 16/11/2026, 13h10: 11 → 10 de 12. O critério 9 volta a "Parcial": o formulário coleta dados pessoais sem página de privacidade com prazo e contato (#26, do responsável).
 - 16/11/2026, 12h07: 10 → 11 de 12. O critério 9 era "Parcial" porque a API de alertas do Dependabot respondia 403 (alertas desligados, engenharia#33, #36). O responsável ligou os alertas; a API mostra 0 abertos e o audit de produção, 0 vulnerabilidades.
 - 10/11/2026: declarado 11 de 12 (só o 5 "Parcial"). Pela régua atual, o 8 estava sem axe e o 9 contava só o `npm audit` com o Dependabot desligado. Mediana do LCP no ar: 1,60 s.
