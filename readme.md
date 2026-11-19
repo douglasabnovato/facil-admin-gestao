@@ -72,7 +72,7 @@ Com o responsável:
 
 - Criar a conta do GoatCounter com o código `douglasabnovato` ([#21](https://github.com/douglasabnovato/facil-admin-gestao/issues/21)).
 - Fechar a issue dos alertas do Dependabot, já ligados e sem alerta aberto em 16/11/2026 ([#36](https://github.com/douglasabnovato/facil-admin-gestao/issues/36)).
-- Trocar a fonte do Pages para "GitHub Actions" ([#37](https://github.com/douglasabnovato/facil-admin-gestao/issues/37)).
+- Fechar a issue do Pages pelo Actions, que já publica só o `_site` desde 16/11/2026 ([#37](https://github.com/douglasabnovato/facil-admin-gestao/issues/37)).
 - Confirmar depoimentos e o "98%" ([#19](https://github.com/douglasabnovato/facil-admin-gestao/issues/19)).
 - Enviar um pedido real e testar com alguém de fora ([#22](https://github.com/douglasabnovato/facil-admin-gestao/issues/22)).
 - Informar os links das redes ([#23](https://github.com/douglasabnovato/facil-admin-gestao/issues/23)).
@@ -80,9 +80,7 @@ Com o responsável:
 
 Com o agente:
 
-- Medir o LCP de novo depois da publicação deste ciclo ([#38](https://github.com/douglasabnovato/facil-admin-gestao/issues/38)).
-- Rodar os testes contra a pasta `_site` ([#39](https://github.com/douglasabnovato/facil-admin-gestao/issues/39)).
-- Atualizar o Playwright ([#40](https://github.com/douglasabnovato/facil-admin-gestao/issues/40)).
+- Levar à `main` o ciclo de 18/11/2026 (PR [#47](https://github.com/douglasabnovato/facil-admin-gestao/pull/47)): LCP medido no ar, mediana 1,51 s ([#38](https://github.com/douglasabnovato/facil-admin-gestao/issues/38)); testes também contra `_site` ([#39](https://github.com/douglasabnovato/facil-admin-gestao/issues/39)); Playwright 1.65.1 ([#40](https://github.com/douglasabnovato/facil-admin-gestao/issues/40)).
 - Página de privacidade, à espera do canal de contato ([#26](https://github.com/douglasabnovato/facil-admin-gestao/issues/26)).
 
 O sistema de gestão (dashboard, API) fica na `facil-admin-plataforma`.
