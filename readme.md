@@ -1,5 +1,26 @@
 # FacilAdmin — Síndico Profissional e Ecossistema de Facilities
 
+Landing page de um síndico profissional: apresenta os serviços de gestão de condomínios e recebe pedidos de diagnóstico gratuito.
+
+**▶ [Abrir o site no ar](https://douglasabnovato.github.io/facil-admin-gestao/)** · GitHub Pages, publicado a partir da `main`.
+
+![Início do FacilAdmin no computador: o título O Futuro da Gestão Condominial com Rigor de Engenharia, os botões Solicitar Diagnóstico Gratuito e Conhecer Ecossistema, e o carrossel de imagens à direita](.github/capturas/inicio-computador.png)
+
+## Experimente em 30 segundos
+
+1. Abra o [site](https://douglasabnovato.github.io/facil-admin-gestao/).
+2. Clique em **Solicitar Diagnóstico Gratuito**: a página desce até o formulário.
+3. Preencha nome, e-mail, telefone e o seu condomínio. O envio vai pelo Formspree.
+
+## Telas
+
+Capturas do site publicado em 23/11/2026, em 360 px (celular) e 1440 px (computador). O formulário aparece vazio; os depoimentos e os números da página são ilustrativos, como o próprio site avisa.
+
+| | Celular (360 px) | Computador (1440 px) |
+|---|---|---|
+| **Início** | <img src=".github/capturas/inicio-celular.png" width="180" alt="Início no celular: o título, o texto de apresentação e os dois botões de entrada"> | <img src=".github/capturas/inicio-computador.png" width="480" alt="Início no computador: o menu, o título, os botões e o carrossel de imagens"> |
+| **Diagnóstico** | <img src=".github/capturas/contato-celular.png" width="180" alt="Formulário de diagnóstico no celular: o título Pronto para elevar o nível do seu condomínio e os campos nome, e-mail e telefone"> | <img src=".github/capturas/contato-computador.png" width="480" alt="Formulário de diagnóstico no computador: os campos nome, e-mail, telefone e condomínio, e o aviso da LGPD"> |
+
 > **Estado em 16/11/2026:** Página estática no GitHub Pages, Vitrine (N2), 10 de 12 critérios atendidos. O envio usa o Formspree, simulado nos testes; o envio real não foi testado (#22). Veja [Estado e próximos passos](#estado-e-próximos-passos-ciclo-de-16112026) e [docs/MVP.md](docs/MVP.md).
 
 ## Descrição e Objetivo do Projeto
