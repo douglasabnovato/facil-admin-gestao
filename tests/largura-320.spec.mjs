@@ -9,17 +9,15 @@ test.use({ viewport: { width: 320, height: 640 } });
 // Duas medidas de rolagem lateral (R19 do #56):
 // 1. a largura do documento não passa da área visível;
 // 2. nenhum elemento visível passa da borda direita. O html e o body têm overflow-x: hidden,
-//    e por isso a 1ª medida sozinha não vê um conteúdo cortado. Um elemento recortado por um
-//    ancestral com overflow (os slides do carrossel fora da vez) não conta, porque não aparece.
+//    e por isso a 1ª medida sozinha não vê um conteúdo cortado. Só o carrossel recorta de
+//    propósito (os slides fora da vez); fora dele, um elemento recortado por um ancestral com
+//    overflow: hidden (o topo, por exemplo) conta, porque a pessoa perde o pedaço cortado.
 const semRolagemLateral = async (page, onde) => {
   const { largura, janela, fora } = await page.evaluate(() => {
     const janela = document.documentElement.clientWidth;
     const recortado = (e) => {
-      for (let a = e.parentElement; a && a !== document.body; a = a.parentElement) {
-        const s = getComputedStyle(a);
-        if (s.overflowX !== 'visible' && a.getBoundingClientRect().right <= janela + 1) return true;
-      }
-      return false;
+      const carrossel = e.closest('.carousel-container');
+      return Boolean(carrossel) && carrossel.getBoundingClientRect().right <= janela + 1;
     };
     const fora = [...document.querySelectorAll('body *')]
       .filter((e) => {
