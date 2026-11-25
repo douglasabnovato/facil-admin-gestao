@@ -769,6 +769,18 @@ footer {
     width: 100%;
   }
 
+  /* A 320 px, um rótulo longo ("Solicitar Diagnóstico Gratuito") não cabe numa linha: o botão quebra o texto, em vez de passar da tela (#51) */
+  .btn {
+    white-space: normal;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  /* O item da grade não cresce além da coluna por causa do conteúdo (#51) */
+  .hero-content {
+    min-width: 0;
+  }
+
   .nav-menu {
     display: flex;
     position: fixed;
